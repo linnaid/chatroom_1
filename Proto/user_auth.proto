@@ -1,0 +1,75 @@
+syntax = "proto3";
+package auth;
+
+enum actions{
+    UNKNOWN = 0;
+    LOGIN = 1;
+    LOGOUT = 2;
+    REGISTER = 3;
+    RVERIFY = 4;
+    LVERIFY = 5;
+}
+
+enum Select{
+    PASSWORD = 0;
+    EMAIL = 1;
+}
+
+message Auth{
+    actions action= 1;
+    RegisterRequest req = 2;
+    RegisterResponse res = 3;
+    LogInRequest loq = 4;
+    LogInResponse los = 5;
+    Register_Ver R_ver = 6;
+    Login_Ver L_ver = 7;
+    string msg = 8;
+}
+
+message Register_Ver{
+    string email_msg = 1;
+    bool decide = 2;
+    string time = 3;
+    string username = 4;
+}
+
+message Login_Ver{
+    bool decide = 1;
+    string email_msg = 2;
+    string time = 3;
+    string username = 4;
+}
+
+message RegisterRequest{
+    string username = 1;
+    string password = 2;
+    string email = 3;
+    string phone = 4;
+    string verification_code = 5;
+}
+
+message RegisterResponse{
+    bool decide = 1;
+    string msg = 2;
+    string time = 4;
+}
+   
+message LogInRequest{
+    Select select = 1;
+    string username = 2;
+    string password = 3;
+    string email = 4;
+    string Verification_code = 5;
+}
+
+message LogInResponse{
+    int32 decide = 1;
+}
+
+message LogoutResquest{
+    string username = 1;
+    string password = 2;
+}
+
+
+

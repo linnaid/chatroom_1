@@ -1,0 +1,375 @@
+syntax = "proto3";
+package chat;
+
+enum Actions {
+    ACTION_QUIT = 0;
+    // 登陆
+    LOGIN = 21;
+    // 登陆重复
+    UNLOGIN = 15;
+    ADDFDREQ = 3;
+    ADDFDRES = 4;
+    HEART = 5;
+    FDLIST = 6;
+    FRIENDMSG = 7;
+    USERNTF = 8;
+    UNUSERNTF = 9;
+    DELFDREQ = 10;
+    DELFDRES = 11;
+    RESPONSE = 12;
+    OFFLINEMSG = 13;
+    // 在刚开始就更新好友；
+    LOGINLIST = 14;
+    // 屏蔽好友
+    BLOCKFRIEND = 16;
+    UNBLOCKFRIEND = 17;
+    // 文件发送
+    SENDFILE = 18;
+    // 文件接收
+    RECVFILE = 19;
+    // 文件查看
+    LOOKFILE = 20;
+}
+
+enum Group {
+    GROUP_QUIT = 0;
+    GROUPLIST = 1;
+    ADDGROUP = 2;
+    JOINGROUP = 3;
+    JOINGROUPRESPONSE = 4;
+    FINDREQ = 5;
+    CHOICEGROUP = 6;
+
+    GROUPMEMBERS = 7;
+    GROUPMSG = 8;
+    CHATGROUPLIST = 9;
+    LEAVEGROUP = 10;
+    ADDMEMBER = 11;
+    DELMEMBER = 12;
+    ADDMEMBERRES = 13;
+    DELMEMBERRES = 14;
+    DISBANDGROUP = 15;
+    ADDMANAGER = 16;
+    ADDMANAGERRES = 18;
+    DELMANAGER = 17;
+    DELMANAGERRES = 19;
+    SENDFILEGROUP = 20;
+    RECVFILEGROUP = 21;
+    LOOKFILEGROUP = 22;
+}
+
+message Chat {
+    
+    // 以下是对好友的处理，包括部分登陆时的判定
+    Actions action = 1;
+    FriendChatMessage chat_fd = 2;
+    AddFriendRequest friend_req = 4;
+    AddFriendResponse friend_res = 5;
+    FriendLists friends = 6;
+    UserRequest req = 7;
+    Login log = 8;
+    DeleteFriendRequest friend_del_req = 10;
+    DeleteFriendResponse friend_del_res = 11;
+    LoginResponse response = 12;
+    OfflineMSG off_msg = 13;
+    BlockFriend block_friend = 14;
+    SendFile send_file = 15;
+    RecvFile recv_file = 16;
+    LookFileRequest file_req = 17;
+
+    // 以下是对群的处理
+    Group group = 18;
+    AddGroup add_group = 19;
+    JoinGroup join_group = 20; 
+    JoinGroupResponse join_res = 21;
+    GroupList group_list = 22;
+    FindRequest group_notify = 23;
+    ChoiceGroup group_choice = 24;
+
+    GroupMembers group_members = 25;
+    GroupChat group_chat = 26;
+    GroupChatList chat_list = 27;
+    LeaveGroup leave_group = 28;
+    AddMember add_member = 29;
+    DelMember del_member = 30;
+    AddMemberResponse add_member_res = 31;
+    DelMemberResponse del_member_res = 32;
+    DisbandGroup disband_group = 33;
+    AddManager add_manager = 34;
+    DelManager del_manager = 35;
+    RecvFileGroup recv_file_group = 36;
+    SendFileGroup send_file_group = 37;
+    FileListGroup file_list_group = 38;
+    LookFileRequestGroup look_fiele_req_group = 39;
+
+    // 心跳判定
+    string heart = 9;
+}
+
+// 以下是对群聊的处理
+
+
+// 文件传输
+message LookFileRequestGroup {
+    string username = 1;
+    map<string, FileListGroup> result = 2;
+    string u_name = 3;
+    string g_name = 4;
+}
+
+message FileListGroup {
+    repeated string files = 1;
+}
+
+message SendFileGroup {
+    string name = 5;
+    string g_name = 4;
+    string u_name = 1;
+    string file_name = 2;
+    string time = 3;
+}
+
+message RecvFileGroup {
+    string name = 1;
+    string u_name = 4;
+    string g_name = 5;
+    string file_name = 2;
+    string time = 3;
+}
+
+// 删除管理员
+message DelManager {
+    string u_name = 1;
+    string g_name = 2;
+    string username = 3;
+    string msg = 4;
+    bool decide = 5;
+}
+
+// 添加管理员
+message AddManager {
+    string u_name = 1;
+    string g_name = 2;
+    string username = 3;
+    string msg = 4;
+    bool decide = 5;
+}
+
+// 解散群聊
+message DisbandGroup {
+    string u_name = 1;
+    string g_name = 2;
+}
+
+// 踢人回复
+message DelMemberResponse {
+    string username = 1;
+    string u_name = 2;
+    string g_name = 3;
+    bool decide = 4;
+    string msg = 5;
+    string statue = 6;
+}
+
+// 踢人
+message DelMember {
+    string username = 1;
+    string u_name = 2;
+    string g_name = 3;
+    bool decide = 4;
+    string msg = 5;
+    string statue = 6;
+}
+
+// 加人回复
+message AddMemberResponse {
+    string username = 1;
+    string u_name = 2;
+    string g_name = 3;
+}
+
+// 加人
+message AddMember {
+    string username = 1;
+    string u_name = 2;
+    string g_name = 3;
+    bool decide = 4;
+    string msg = 5;
+}
+
+// 离开群
+message LeaveGroup {
+    string u_name = 1;
+    string g_name = 2;
+    bool decide = 3;
+    string statue = 4;
+}
+
+// 群聊历史消息
+message GroupChatList {
+    repeated string msg = 1;
+    string u_name = 2;
+    string g_name = 3;
+}
+
+// 群聊
+message GroupChat {
+    string msg = 1;
+    string username = 2;
+    string u_name = 3;
+    string g_name = 4;
+}
+
+// 列出群聊成员
+message GroupMembers {
+    string u_name = 1;
+    string g_name = 2;
+    map<string, string> members = 3;
+}
+
+// 选择进入的群聊
+message ChoiceGroup {
+    string u_name = 1;
+    string g_name = 2;
+    string statue = 3;
+}
+
+// 列出加群申请
+message FindRequest {
+    map<string, bytes> response = 1;
+}
+
+// 列出群聊列表
+message GroupList {
+    string username = 1;
+    string time = 2;
+    repeated string groups = 3;
+}
+
+// 加群请求...
+message JoinGroup {
+    string u_name = 1;
+    string g_name = 2;
+    string username = 3;
+    bool decide = 4;
+    string time = 5;
+    string msg = 6;
+}
+
+// 返回是否加群成功
+message JoinGroupResponse {
+    string u_name = 1;
+    string g_name = 2;
+    string username = 3;
+    bool decide = 4;
+    string time = 5;
+    string msg = 6;
+}
+
+message AddGroup {
+    string username = 1;
+    string group_name = 2;
+    string time = 3;
+    string msg = 4;
+    bool success = 5;
+}
+
+
+
+// 以下是对好友的处理，包括个人登陆
+message LookFileRequest {
+    string username = 1;
+    map<string, FileList> result = 2;
+}
+
+message FileList {
+    repeated string files = 1;
+}
+
+message SendFile {
+    string name = 1;
+    string file_name = 2;
+    string time = 3;
+}
+
+message RecvFile {
+    string name = 1;
+    string file_name = 2;
+    string time = 3;
+}
+
+message BlockFriend {
+    string name = 1;
+}
+
+message OfflineMSG {
+    repeated string msg = 1;
+    string name = 2;
+    string username = 3;
+}
+
+message UserRequest {
+    string username = 1;
+    map<string, string> result = 3;
+}
+
+message Login {
+    bool login = 2;
+    string username = 1;
+}
+
+message LoginResponse {
+    string username = 1;
+    map<string, string> result = 2;
+}
+
+message DeleteFriendResponse {
+    bool result = 1;
+    string username = 2;
+}
+
+message DeleteFriendRequest {
+    string from_name = 1;
+    string to_name = 2;
+    string time = 3;
+}
+
+message AddFriendRequest {
+    string from_username = 1;
+    string to_username = 2;
+    string time = 3;
+}
+
+message AddFriendResponse {
+    bool decide = 1;
+    string from_name = 2;
+    string to_name = 3;
+    string msg = 4;
+    string time = 5;
+}
+
+message FriendLists {
+    map<string, bool> friends = 1;
+    string name = 2;
+}
+
+message FriendChatMessage {
+    string from_name = 1;
+    string to_name = 2;
+    string message = 3;
+    string time = 4;
+    bool block = 5;
+}
+
+// message GroupChatMessage {
+//     string group_name = 1;
+//     string from_member = 2;
+//     string message = 3;
+//     string time = 4;
+// }
+
+// message GroupNotification {
+//     string group_name = 1;
+//     string member_name = 2;
+//     bool action = 3;
+// }
