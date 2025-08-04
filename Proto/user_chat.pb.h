@@ -181,6 +181,12 @@ extern UserRequestDefaultTypeInternal _UserRequest_default_instance_;
 class UserRequest_ResultEntry_DoNotUse;
 struct UserRequest_ResultEntry_DoNotUseDefaultTypeInternal;
 extern UserRequest_ResultEntry_DoNotUseDefaultTypeInternal _UserRequest_ResultEntry_DoNotUse_default_instance_;
+class delAccount;
+struct delAccountDefaultTypeInternal;
+extern delAccountDefaultTypeInternal _delAccount_default_instance_;
+class delAccount_GroupNameEntry_DoNotUse;
+struct delAccount_GroupNameEntry_DoNotUseDefaultTypeInternal;
+extern delAccount_GroupNameEntry_DoNotUseDefaultTypeInternal _delAccount_GroupNameEntry_DoNotUse_default_instance_;
 }  // namespace chat
 PROTOBUF_NAMESPACE_OPEN
 template<> ::chat::AddFriendRequest* Arena::CreateMaybeMessage<::chat::AddFriendRequest>(Arena*);
@@ -227,6 +233,8 @@ template<> ::chat::SendFile* Arena::CreateMaybeMessage<::chat::SendFile>(Arena*)
 template<> ::chat::SendFileGroup* Arena::CreateMaybeMessage<::chat::SendFileGroup>(Arena*);
 template<> ::chat::UserRequest* Arena::CreateMaybeMessage<::chat::UserRequest>(Arena*);
 template<> ::chat::UserRequest_ResultEntry_DoNotUse* Arena::CreateMaybeMessage<::chat::UserRequest_ResultEntry_DoNotUse>(Arena*);
+template<> ::chat::delAccount* Arena::CreateMaybeMessage<::chat::delAccount>(Arena*);
+template<> ::chat::delAccount_GroupNameEntry_DoNotUse* Arena::CreateMaybeMessage<::chat::delAccount_GroupNameEntry_DoNotUse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace chat {
 
@@ -251,12 +259,13 @@ enum Actions : int {
   SENDFILE = 18,
   RECVFILE = 19,
   LOOKFILE = 20,
+  DELACCOUNT = 22,
   Actions_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   Actions_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool Actions_IsValid(int value);
 constexpr Actions Actions_MIN = ACTION_QUIT;
-constexpr Actions Actions_MAX = LOGIN;
+constexpr Actions Actions_MAX = DELACCOUNT;
 constexpr int Actions_ARRAYSIZE = Actions_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Actions_descriptor();
@@ -478,6 +487,7 @@ class Chat final :
     kSendFileGroupFieldNumber = 37,
     kFileListGroupFieldNumber = 38,
     kLookFieleReqGroupFieldNumber = 39,
+    kDelAccountFieldNumber = 40,
     kActionFieldNumber = 1,
     kGroupFieldNumber = 18,
   };
@@ -1125,6 +1135,24 @@ class Chat final :
       ::chat::LookFileRequestGroup* look_fiele_req_group);
   ::chat::LookFileRequestGroup* unsafe_arena_release_look_fiele_req_group();
 
+  // .chat.delAccount del_account = 40;
+  bool has_del_account() const;
+  private:
+  bool _internal_has_del_account() const;
+  public:
+  void clear_del_account();
+  const ::chat::delAccount& del_account() const;
+  PROTOBUF_NODISCARD ::chat::delAccount* release_del_account();
+  ::chat::delAccount* mutable_del_account();
+  void set_allocated_del_account(::chat::delAccount* del_account);
+  private:
+  const ::chat::delAccount& _internal_del_account() const;
+  ::chat::delAccount* _internal_mutable_del_account();
+  public:
+  void unsafe_arena_set_allocated_del_account(
+      ::chat::delAccount* del_account);
+  ::chat::delAccount* unsafe_arena_release_del_account();
+
   // .chat.Actions action = 1;
   void clear_action();
   ::chat::Actions action() const;
@@ -1187,8 +1215,242 @@ class Chat final :
     ::chat::SendFileGroup* send_file_group_;
     ::chat::FileListGroup* file_list_group_;
     ::chat::LookFileRequestGroup* look_fiele_req_group_;
+    ::chat::delAccount* del_account_;
     int action_;
     int group_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_user_5fchat_2eproto;
+};
+// -------------------------------------------------------------------
+
+class delAccount_GroupNameEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<delAccount_GroupNameEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<delAccount_GroupNameEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> SuperType;
+  delAccount_GroupNameEntry_DoNotUse();
+  explicit PROTOBUF_CONSTEXPR delAccount_GroupNameEntry_DoNotUse(
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  explicit delAccount_GroupNameEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const delAccount_GroupNameEntry_DoNotUse& other);
+  static const delAccount_GroupNameEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const delAccount_GroupNameEntry_DoNotUse*>(&_delAccount_GroupNameEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "chat.delAccount.GroupNameEntry.key");
+ }
+  static bool ValidateValue(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "chat.delAccount.GroupNameEntry.value");
+ }
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  friend struct ::TableStruct_user_5fchat_2eproto;
+};
+
+// -------------------------------------------------------------------
+
+class delAccount final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:chat.delAccount) */ {
+ public:
+  inline delAccount() : delAccount(nullptr) {}
+  ~delAccount() override;
+  explicit PROTOBUF_CONSTEXPR delAccount(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  delAccount(const delAccount& from);
+  delAccount(delAccount&& from) noexcept
+    : delAccount() {
+    *this = ::std::move(from);
+  }
+
+  inline delAccount& operator=(const delAccount& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline delAccount& operator=(delAccount&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const delAccount& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const delAccount* internal_default_instance() {
+    return reinterpret_cast<const delAccount*>(
+               &_delAccount_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(delAccount& a, delAccount& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(delAccount* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(delAccount* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  delAccount* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<delAccount>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const delAccount& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const delAccount& from) {
+    delAccount::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(delAccount* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "chat.delAccount";
+  }
+  protected:
+  explicit delAccount(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kGroupNameFieldNumber = 2,
+    kFriendsFieldNumber = 4,
+    kNameFieldNumber = 1,
+  };
+  // map<string, string> group_name = 2;
+  int group_name_size() const;
+  private:
+  int _internal_group_name_size() const;
+  public:
+  void clear_group_name();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      _internal_group_name() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      _internal_mutable_group_name();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      group_name() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      mutable_group_name();
+
+  // repeated string friends = 4;
+  int friends_size() const;
+  private:
+  int _internal_friends_size() const;
+  public:
+  void clear_friends();
+  const std::string& friends(int index) const;
+  std::string* mutable_friends(int index);
+  void set_friends(int index, const std::string& value);
+  void set_friends(int index, std::string&& value);
+  void set_friends(int index, const char* value);
+  void set_friends(int index, const char* value, size_t size);
+  std::string* add_friends();
+  void add_friends(const std::string& value);
+  void add_friends(std::string&& value);
+  void add_friends(const char* value);
+  void add_friends(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& friends() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_friends();
+  private:
+  const std::string& _internal_friends(int index) const;
+  std::string* _internal_add_friends();
+  public:
+
+  // string name = 1;
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // @@protoc_insertion_point(class_scope:chat.delAccount)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+        delAccount_GroupNameEntry_DoNotUse,
+        std::string, std::string,
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> group_name_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> friends_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1270,7 +1532,7 @@ class LookFileRequestGroup final :
                &_LookFileRequestGroup_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    4;
 
   friend void swap(LookFileRequestGroup& a, LookFileRequestGroup& b) {
     a.Swap(&b);
@@ -1481,7 +1743,7 @@ class FileListGroup final :
                &_FileListGroup_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    5;
 
   friend void swap(FileListGroup& a, FileListGroup& b) {
     a.Swap(&b);
@@ -1644,7 +1906,7 @@ class SendFileGroup final :
                &_SendFileGroup_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    6;
 
   friend void swap(SendFileGroup& a, SendFileGroup& b) {
     a.Swap(&b);
@@ -1861,7 +2123,7 @@ class RecvFileGroup final :
                &_RecvFileGroup_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    7;
 
   friend void swap(RecvFileGroup& a, RecvFileGroup& b) {
     a.Swap(&b);
@@ -2078,7 +2340,7 @@ class DelManager final :
                &_DelManager_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    8;
 
   friend void swap(DelManager& a, DelManager& b) {
     a.Swap(&b);
@@ -2290,7 +2552,7 @@ class AddManager final :
                &_AddManager_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    9;
 
   friend void swap(AddManager& a, AddManager& b) {
     a.Swap(&b);
@@ -2502,7 +2764,7 @@ class DisbandGroup final :
                &_DisbandGroup_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    10;
 
   friend void swap(DisbandGroup& a, DisbandGroup& b) {
     a.Swap(&b);
@@ -2671,7 +2933,7 @@ class DelMemberResponse final :
                &_DelMemberResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    11;
 
   friend void swap(DelMemberResponse& a, DelMemberResponse& b) {
     a.Swap(&b);
@@ -2899,7 +3161,7 @@ class DelMember final :
                &_DelMember_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    12;
 
   friend void swap(DelMember& a, DelMember& b) {
     a.Swap(&b);
@@ -3127,7 +3389,7 @@ class AddMemberResponse final :
                &_AddMemberResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    13;
 
   friend void swap(AddMemberResponse& a, AddMemberResponse& b) {
     a.Swap(&b);
@@ -3312,7 +3574,7 @@ class AddMember final :
                &_AddMember_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    14;
 
   friend void swap(AddMember& a, AddMember& b) {
     a.Swap(&b);
@@ -3524,7 +3786,7 @@ class LeaveGroup final :
                &_LeaveGroup_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    15;
 
   friend void swap(LeaveGroup& a, LeaveGroup& b) {
     a.Swap(&b);
@@ -3720,7 +3982,7 @@ class GroupChatList final :
                &_GroupChatList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    16;
 
   friend void swap(GroupChatList& a, GroupChatList& b) {
     a.Swap(&b);
@@ -3915,7 +4177,7 @@ class GroupChat final :
                &_GroupChat_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    17;
 
   friend void swap(GroupChat& a, GroupChat& b) {
     a.Swap(&b);
@@ -4144,7 +4406,7 @@ class GroupMembers final :
                &_GroupMembers_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    19;
 
   friend void swap(GroupMembers& a, GroupMembers& b) {
     a.Swap(&b);
@@ -4339,7 +4601,7 @@ class ChoiceGroup final :
                &_ChoiceGroup_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    20;
 
   friend void swap(ChoiceGroup& a, ChoiceGroup& b) {
     a.Swap(&b);
@@ -4550,7 +4812,7 @@ class FindRequest final :
                &_FindRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    22;
 
   friend void swap(FindRequest& a, FindRequest& b) {
     a.Swap(&b);
@@ -4713,7 +4975,7 @@ class GroupList final :
                &_GroupList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    23;
 
   friend void swap(GroupList& a, GroupList& b) {
     a.Swap(&b);
@@ -4908,7 +5170,7 @@ class JoinGroup final :
                &_JoinGroup_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    24;
 
   friend void swap(JoinGroup& a, JoinGroup& b) {
     a.Swap(&b);
@@ -5136,7 +5398,7 @@ class JoinGroupResponse final :
                &_JoinGroupResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    25;
 
   friend void swap(JoinGroupResponse& a, JoinGroupResponse& b) {
     a.Swap(&b);
@@ -5364,7 +5626,7 @@ class AddGroup final :
                &_AddGroup_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    26;
 
   friend void swap(AddGroup& a, AddGroup& b) {
     a.Swap(&b);
@@ -5602,7 +5864,7 @@ class LookFileRequest final :
                &_LookFileRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    28;
 
   friend void swap(LookFileRequest& a, LookFileRequest& b) {
     a.Swap(&b);
@@ -5781,7 +6043,7 @@ class FileList final :
                &_FileList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    29;
 
   friend void swap(FileList& a, FileList& b) {
     a.Swap(&b);
@@ -5944,7 +6206,7 @@ class SendFile final :
                &_SendFile_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    30;
 
   friend void swap(SendFile& a, SendFile& b) {
     a.Swap(&b);
@@ -6129,7 +6391,7 @@ class RecvFile final :
                &_RecvFile_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    31;
 
   friend void swap(RecvFile& a, RecvFile& b) {
     a.Swap(&b);
@@ -6314,7 +6576,7 @@ class BlockFriend final :
                &_BlockFriend_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    32;
 
   friend void swap(BlockFriend& a, BlockFriend& b) {
     a.Swap(&b);
@@ -6467,7 +6729,7 @@ class OfflineMSG final :
                &_OfflineMSG_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    33;
 
   friend void swap(OfflineMSG& a, OfflineMSG& b) {
     a.Swap(&b);
@@ -6690,7 +6952,7 @@ class UserRequest final :
                &_UserRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    35;
 
   friend void swap(UserRequest& a, UserRequest& b) {
     a.Swap(&b);
@@ -6869,7 +7131,7 @@ class Login final :
                &_Login_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    36;
 
   friend void swap(Login& a, Login& b) {
     a.Swap(&b);
@@ -7061,7 +7323,7 @@ class LoginResponse final :
                &_LoginResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    38;
 
   friend void swap(LoginResponse& a, LoginResponse& b) {
     a.Swap(&b);
@@ -7240,7 +7502,7 @@ class DeleteFriendResponse final :
                &_DeleteFriendResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    37;
+    39;
 
   friend void swap(DeleteFriendResponse& a, DeleteFriendResponse& b) {
     a.Swap(&b);
@@ -7404,7 +7666,7 @@ class DeleteFriendRequest final :
                &_DeleteFriendRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    38;
+    40;
 
   friend void swap(DeleteFriendRequest& a, DeleteFriendRequest& b) {
     a.Swap(&b);
@@ -7589,7 +7851,7 @@ class AddFriendRequest final :
                &_AddFriendRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    39;
+    41;
 
   friend void swap(AddFriendRequest& a, AddFriendRequest& b) {
     a.Swap(&b);
@@ -7774,7 +8036,7 @@ class AddFriendResponse final :
                &_AddFriendResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    40;
+    42;
 
   friend void swap(AddFriendResponse& a, AddFriendResponse& b) {
     a.Swap(&b);
@@ -8012,7 +8274,7 @@ class FriendLists final :
                &_FriendLists_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    42;
+    44;
 
   friend void swap(FriendLists& a, FriendLists& b) {
     a.Swap(&b);
@@ -8191,7 +8453,7 @@ class FriendChatMessage final :
                &_FriendChatMessage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    43;
+    45;
 
   friend void swap(FriendChatMessage& a, FriendChatMessage& b) {
     a.Swap(&b);
@@ -11602,6 +11864,256 @@ inline void Chat::set_allocated_heart(std::string* heart) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:chat.Chat.heart)
+}
+
+// .chat.delAccount del_account = 40;
+inline bool Chat::_internal_has_del_account() const {
+  return this != internal_default_instance() && _impl_.del_account_ != nullptr;
+}
+inline bool Chat::has_del_account() const {
+  return _internal_has_del_account();
+}
+inline void Chat::clear_del_account() {
+  if (GetArenaForAllocation() == nullptr && _impl_.del_account_ != nullptr) {
+    delete _impl_.del_account_;
+  }
+  _impl_.del_account_ = nullptr;
+}
+inline const ::chat::delAccount& Chat::_internal_del_account() const {
+  const ::chat::delAccount* p = _impl_.del_account_;
+  return p != nullptr ? *p : reinterpret_cast<const ::chat::delAccount&>(
+      ::chat::_delAccount_default_instance_);
+}
+inline const ::chat::delAccount& Chat::del_account() const {
+  // @@protoc_insertion_point(field_get:chat.Chat.del_account)
+  return _internal_del_account();
+}
+inline void Chat::unsafe_arena_set_allocated_del_account(
+    ::chat::delAccount* del_account) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.del_account_);
+  }
+  _impl_.del_account_ = del_account;
+  if (del_account) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:chat.Chat.del_account)
+}
+inline ::chat::delAccount* Chat::release_del_account() {
+  
+  ::chat::delAccount* temp = _impl_.del_account_;
+  _impl_.del_account_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::chat::delAccount* Chat::unsafe_arena_release_del_account() {
+  // @@protoc_insertion_point(field_release:chat.Chat.del_account)
+  
+  ::chat::delAccount* temp = _impl_.del_account_;
+  _impl_.del_account_ = nullptr;
+  return temp;
+}
+inline ::chat::delAccount* Chat::_internal_mutable_del_account() {
+  
+  if (_impl_.del_account_ == nullptr) {
+    auto* p = CreateMaybeMessage<::chat::delAccount>(GetArenaForAllocation());
+    _impl_.del_account_ = p;
+  }
+  return _impl_.del_account_;
+}
+inline ::chat::delAccount* Chat::mutable_del_account() {
+  ::chat::delAccount* _msg = _internal_mutable_del_account();
+  // @@protoc_insertion_point(field_mutable:chat.Chat.del_account)
+  return _msg;
+}
+inline void Chat::set_allocated_del_account(::chat::delAccount* del_account) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.del_account_;
+  }
+  if (del_account) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(del_account);
+    if (message_arena != submessage_arena) {
+      del_account = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, del_account, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.del_account_ = del_account;
+  // @@protoc_insertion_point(field_set_allocated:chat.Chat.del_account)
+}
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// delAccount
+
+// string name = 1;
+inline void delAccount::clear_name() {
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& delAccount::name() const {
+  // @@protoc_insertion_point(field_get:chat.delAccount.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void delAccount::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:chat.delAccount.name)
+}
+inline std::string* delAccount::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:chat.delAccount.name)
+  return _s;
+}
+inline const std::string& delAccount::_internal_name() const {
+  return _impl_.name_.Get();
+}
+inline void delAccount::_internal_set_name(const std::string& value) {
+  
+  _impl_.name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* delAccount::_internal_mutable_name() {
+  
+  return _impl_.name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* delAccount::release_name() {
+  // @@protoc_insertion_point(field_release:chat.delAccount.name)
+  return _impl_.name_.Release();
+}
+inline void delAccount::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:chat.delAccount.name)
+}
+
+// map<string, string> group_name = 2;
+inline int delAccount::_internal_group_name_size() const {
+  return _impl_.group_name_.size();
+}
+inline int delAccount::group_name_size() const {
+  return _internal_group_name_size();
+}
+inline void delAccount::clear_group_name() {
+  _impl_.group_name_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+delAccount::_internal_group_name() const {
+  return _impl_.group_name_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+delAccount::group_name() const {
+  // @@protoc_insertion_point(field_map:chat.delAccount.group_name)
+  return _internal_group_name();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+delAccount::_internal_mutable_group_name() {
+  return _impl_.group_name_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+delAccount::mutable_group_name() {
+  // @@protoc_insertion_point(field_mutable_map:chat.delAccount.group_name)
+  return _internal_mutable_group_name();
+}
+
+// repeated string friends = 4;
+inline int delAccount::_internal_friends_size() const {
+  return _impl_.friends_.size();
+}
+inline int delAccount::friends_size() const {
+  return _internal_friends_size();
+}
+inline void delAccount::clear_friends() {
+  _impl_.friends_.Clear();
+}
+inline std::string* delAccount::add_friends() {
+  std::string* _s = _internal_add_friends();
+  // @@protoc_insertion_point(field_add_mutable:chat.delAccount.friends)
+  return _s;
+}
+inline const std::string& delAccount::_internal_friends(int index) const {
+  return _impl_.friends_.Get(index);
+}
+inline const std::string& delAccount::friends(int index) const {
+  // @@protoc_insertion_point(field_get:chat.delAccount.friends)
+  return _internal_friends(index);
+}
+inline std::string* delAccount::mutable_friends(int index) {
+  // @@protoc_insertion_point(field_mutable:chat.delAccount.friends)
+  return _impl_.friends_.Mutable(index);
+}
+inline void delAccount::set_friends(int index, const std::string& value) {
+  _impl_.friends_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:chat.delAccount.friends)
+}
+inline void delAccount::set_friends(int index, std::string&& value) {
+  _impl_.friends_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:chat.delAccount.friends)
+}
+inline void delAccount::set_friends(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _impl_.friends_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:chat.delAccount.friends)
+}
+inline void delAccount::set_friends(int index, const char* value, size_t size) {
+  _impl_.friends_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:chat.delAccount.friends)
+}
+inline std::string* delAccount::_internal_add_friends() {
+  return _impl_.friends_.Add();
+}
+inline void delAccount::add_friends(const std::string& value) {
+  _impl_.friends_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:chat.delAccount.friends)
+}
+inline void delAccount::add_friends(std::string&& value) {
+  _impl_.friends_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:chat.delAccount.friends)
+}
+inline void delAccount::add_friends(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _impl_.friends_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:chat.delAccount.friends)
+}
+inline void delAccount::add_friends(const char* value, size_t size) {
+  _impl_.friends_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:chat.delAccount.friends)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+delAccount::friends() const {
+  // @@protoc_insertion_point(field_list:chat.delAccount.friends)
+  return _impl_.friends_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+delAccount::mutable_friends() {
+  // @@protoc_insertion_point(field_mutable_list:chat.delAccount.friends)
+  return &_impl_.friends_;
 }
 
 // -------------------------------------------------------------------
@@ -17553,6 +18065,10 @@ inline void FriendChatMessage::set_block(bool value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

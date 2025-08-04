@@ -29,6 +29,8 @@ enum Actions {
     RECVFILE = 19;
     // 文件查看
     LOOKFILE = 20;
+    // 注销账号
+    DELACCOUNT = 22;
 }
 
 enum Group {
@@ -104,6 +106,16 @@ message Chat {
 
     // 心跳判定
     string heart = 9;
+
+    // 注销账号
+    delAccount del_account = 40;
+}
+
+// 注销账号
+message delAccount {
+    string name = 1;
+    map<string, string> group_name = 2;
+    repeated string friends = 4;
 }
 
 // 以下是对群聊的处理

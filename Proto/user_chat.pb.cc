@@ -59,6 +59,7 @@ PROTOBUF_CONSTEXPR Chat::Chat(
   , /*decltype(_impl_.send_file_group_)*/nullptr
   , /*decltype(_impl_.file_list_group_)*/nullptr
   , /*decltype(_impl_.look_fiele_req_group_)*/nullptr
+  , /*decltype(_impl_.del_account_)*/nullptr
   , /*decltype(_impl_.action_)*/0
   , /*decltype(_impl_.group_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
@@ -71,6 +72,32 @@ struct ChatDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ChatDefaultTypeInternal _Chat_default_instance_;
+PROTOBUF_CONSTEXPR delAccount_GroupNameEntry_DoNotUse::delAccount_GroupNameEntry_DoNotUse(
+    ::_pbi::ConstantInitialized) {}
+struct delAccount_GroupNameEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR delAccount_GroupNameEntry_DoNotUseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~delAccount_GroupNameEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    delAccount_GroupNameEntry_DoNotUse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 delAccount_GroupNameEntry_DoNotUseDefaultTypeInternal _delAccount_GroupNameEntry_DoNotUse_default_instance_;
+PROTOBUF_CONSTEXPR delAccount::delAccount(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.group_name_)*/{::_pbi::ConstantInitialized()}
+  , /*decltype(_impl_.friends_)*/{}
+  , /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct delAccountDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR delAccountDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~delAccountDefaultTypeInternal() {}
+  union {
+    delAccount _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 delAccountDefaultTypeInternal _delAccount_default_instance_;
 PROTOBUF_CONSTEXPR LookFileRequestGroup_ResultEntry_DoNotUse::LookFileRequestGroup_ResultEntry_DoNotUse(
     ::_pbi::ConstantInitialized) {}
 struct LookFileRequestGroup_ResultEntry_DoNotUseDefaultTypeInternal {
@@ -705,7 +732,7 @@ struct FriendChatMessageDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FriendChatMessageDefaultTypeInternal _FriendChatMessage_default_instance_;
 }  // namespace chat
-static ::_pb::Metadata file_level_metadata_user_5fchat_2eproto[44];
+static ::_pb::Metadata file_level_metadata_user_5fchat_2eproto[46];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_user_5fchat_2eproto[2];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_user_5fchat_2eproto = nullptr;
 
@@ -754,6 +781,26 @@ const uint32_t TableStruct_user_5fchat_2eproto::offsets[] PROTOBUF_SECTION_VARIA
   PROTOBUF_FIELD_OFFSET(::chat::Chat, _impl_.file_list_group_),
   PROTOBUF_FIELD_OFFSET(::chat::Chat, _impl_.look_fiele_req_group_),
   PROTOBUF_FIELD_OFFSET(::chat::Chat, _impl_.heart_),
+  PROTOBUF_FIELD_OFFSET(::chat::Chat, _impl_.del_account_),
+  PROTOBUF_FIELD_OFFSET(::chat::delAccount_GroupNameEntry_DoNotUse, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::chat::delAccount_GroupNameEntry_DoNotUse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::chat::delAccount_GroupNameEntry_DoNotUse, key_),
+  PROTOBUF_FIELD_OFFSET(::chat::delAccount_GroupNameEntry_DoNotUse, value_),
+  0,
+  1,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::chat::delAccount, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::chat::delAccount, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::chat::delAccount, _impl_.group_name_),
+  PROTOBUF_FIELD_OFFSET(::chat::delAccount, _impl_.friends_),
   PROTOBUF_FIELD_OFFSET(::chat::LookFileRequestGroup_ResultEntry_DoNotUse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::chat::LookFileRequestGroup_ResultEntry_DoNotUse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1167,53 +1214,57 @@ const uint32_t TableStruct_user_5fchat_2eproto::offsets[] PROTOBUF_SECTION_VARIA
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::chat::Chat)},
-  { 44, 52, -1, sizeof(::chat::LookFileRequestGroup_ResultEntry_DoNotUse)},
-  { 54, -1, -1, sizeof(::chat::LookFileRequestGroup)},
-  { 64, -1, -1, sizeof(::chat::FileListGroup)},
-  { 71, -1, -1, sizeof(::chat::SendFileGroup)},
-  { 82, -1, -1, sizeof(::chat::RecvFileGroup)},
-  { 93, -1, -1, sizeof(::chat::DelManager)},
-  { 104, -1, -1, sizeof(::chat::AddManager)},
-  { 115, -1, -1, sizeof(::chat::DisbandGroup)},
-  { 123, -1, -1, sizeof(::chat::DelMemberResponse)},
-  { 135, -1, -1, sizeof(::chat::DelMember)},
-  { 147, -1, -1, sizeof(::chat::AddMemberResponse)},
-  { 156, -1, -1, sizeof(::chat::AddMember)},
-  { 167, -1, -1, sizeof(::chat::LeaveGroup)},
-  { 177, -1, -1, sizeof(::chat::GroupChatList)},
-  { 186, -1, -1, sizeof(::chat::GroupChat)},
-  { 196, 204, -1, sizeof(::chat::GroupMembers_MembersEntry_DoNotUse)},
-  { 206, -1, -1, sizeof(::chat::GroupMembers)},
-  { 215, -1, -1, sizeof(::chat::ChoiceGroup)},
-  { 224, 232, -1, sizeof(::chat::FindRequest_ResponseEntry_DoNotUse)},
-  { 234, -1, -1, sizeof(::chat::FindRequest)},
-  { 241, -1, -1, sizeof(::chat::GroupList)},
-  { 250, -1, -1, sizeof(::chat::JoinGroup)},
-  { 262, -1, -1, sizeof(::chat::JoinGroupResponse)},
-  { 274, -1, -1, sizeof(::chat::AddGroup)},
-  { 285, 293, -1, sizeof(::chat::LookFileRequest_ResultEntry_DoNotUse)},
-  { 295, -1, -1, sizeof(::chat::LookFileRequest)},
-  { 303, -1, -1, sizeof(::chat::FileList)},
-  { 310, -1, -1, sizeof(::chat::SendFile)},
-  { 319, -1, -1, sizeof(::chat::RecvFile)},
-  { 328, -1, -1, sizeof(::chat::BlockFriend)},
-  { 335, -1, -1, sizeof(::chat::OfflineMSG)},
-  { 344, 352, -1, sizeof(::chat::UserRequest_ResultEntry_DoNotUse)},
-  { 354, -1, -1, sizeof(::chat::UserRequest)},
-  { 362, -1, -1, sizeof(::chat::Login)},
-  { 370, 378, -1, sizeof(::chat::LoginResponse_ResultEntry_DoNotUse)},
-  { 380, -1, -1, sizeof(::chat::LoginResponse)},
-  { 388, -1, -1, sizeof(::chat::DeleteFriendResponse)},
-  { 396, -1, -1, sizeof(::chat::DeleteFriendRequest)},
-  { 405, -1, -1, sizeof(::chat::AddFriendRequest)},
-  { 414, -1, -1, sizeof(::chat::AddFriendResponse)},
-  { 425, 433, -1, sizeof(::chat::FriendLists_FriendsEntry_DoNotUse)},
-  { 435, -1, -1, sizeof(::chat::FriendLists)},
-  { 443, -1, -1, sizeof(::chat::FriendChatMessage)},
+  { 45, 53, -1, sizeof(::chat::delAccount_GroupNameEntry_DoNotUse)},
+  { 55, -1, -1, sizeof(::chat::delAccount)},
+  { 64, 72, -1, sizeof(::chat::LookFileRequestGroup_ResultEntry_DoNotUse)},
+  { 74, -1, -1, sizeof(::chat::LookFileRequestGroup)},
+  { 84, -1, -1, sizeof(::chat::FileListGroup)},
+  { 91, -1, -1, sizeof(::chat::SendFileGroup)},
+  { 102, -1, -1, sizeof(::chat::RecvFileGroup)},
+  { 113, -1, -1, sizeof(::chat::DelManager)},
+  { 124, -1, -1, sizeof(::chat::AddManager)},
+  { 135, -1, -1, sizeof(::chat::DisbandGroup)},
+  { 143, -1, -1, sizeof(::chat::DelMemberResponse)},
+  { 155, -1, -1, sizeof(::chat::DelMember)},
+  { 167, -1, -1, sizeof(::chat::AddMemberResponse)},
+  { 176, -1, -1, sizeof(::chat::AddMember)},
+  { 187, -1, -1, sizeof(::chat::LeaveGroup)},
+  { 197, -1, -1, sizeof(::chat::GroupChatList)},
+  { 206, -1, -1, sizeof(::chat::GroupChat)},
+  { 216, 224, -1, sizeof(::chat::GroupMembers_MembersEntry_DoNotUse)},
+  { 226, -1, -1, sizeof(::chat::GroupMembers)},
+  { 235, -1, -1, sizeof(::chat::ChoiceGroup)},
+  { 244, 252, -1, sizeof(::chat::FindRequest_ResponseEntry_DoNotUse)},
+  { 254, -1, -1, sizeof(::chat::FindRequest)},
+  { 261, -1, -1, sizeof(::chat::GroupList)},
+  { 270, -1, -1, sizeof(::chat::JoinGroup)},
+  { 282, -1, -1, sizeof(::chat::JoinGroupResponse)},
+  { 294, -1, -1, sizeof(::chat::AddGroup)},
+  { 305, 313, -1, sizeof(::chat::LookFileRequest_ResultEntry_DoNotUse)},
+  { 315, -1, -1, sizeof(::chat::LookFileRequest)},
+  { 323, -1, -1, sizeof(::chat::FileList)},
+  { 330, -1, -1, sizeof(::chat::SendFile)},
+  { 339, -1, -1, sizeof(::chat::RecvFile)},
+  { 348, -1, -1, sizeof(::chat::BlockFriend)},
+  { 355, -1, -1, sizeof(::chat::OfflineMSG)},
+  { 364, 372, -1, sizeof(::chat::UserRequest_ResultEntry_DoNotUse)},
+  { 374, -1, -1, sizeof(::chat::UserRequest)},
+  { 382, -1, -1, sizeof(::chat::Login)},
+  { 390, 398, -1, sizeof(::chat::LoginResponse_ResultEntry_DoNotUse)},
+  { 400, -1, -1, sizeof(::chat::LoginResponse)},
+  { 408, -1, -1, sizeof(::chat::DeleteFriendResponse)},
+  { 416, -1, -1, sizeof(::chat::DeleteFriendRequest)},
+  { 425, -1, -1, sizeof(::chat::AddFriendRequest)},
+  { 434, -1, -1, sizeof(::chat::AddFriendResponse)},
+  { 445, 453, -1, sizeof(::chat::FriendLists_FriendsEntry_DoNotUse)},
+  { 455, -1, -1, sizeof(::chat::FriendLists)},
+  { 463, -1, -1, sizeof(::chat::FriendChatMessage)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
   &::chat::_Chat_default_instance_._instance,
+  &::chat::_delAccount_GroupNameEntry_DoNotUse_default_instance_._instance,
+  &::chat::_delAccount_default_instance_._instance,
   &::chat::_LookFileRequestGroup_ResultEntry_DoNotUse_default_instance_._instance,
   &::chat::_LookFileRequestGroup_default_instance_._instance,
   &::chat::_FileListGroup_default_instance_._instance,
@@ -1260,7 +1311,7 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 
 const char descriptor_table_protodef_user_5fchat_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\017user_chat.proto\022\004chat\"\354\013\n\004Chat\022\035\n\006acti"
+  "\n\017user_chat.proto\022\004chat\"\223\014\n\004Chat\022\035\n\006acti"
   "on\030\001 \001(\0162\r.chat.Actions\022(\n\007chat_fd\030\002 \001(\013"
   "2\027.chat.FriendChatMessage\022*\n\nfriend_req\030"
   "\004 \001(\0132\026.chat.AddFriendRequest\022+\n\nfriend_"
@@ -1298,110 +1349,115 @@ const char descriptor_table_protodef_user_5fchat_2eproto[] PROTOBUF_SECTION_VARI
   "(\0132\023.chat.SendFileGroup\022,\n\017file_list_gro"
   "up\030& \001(\0132\023.chat.FileListGroup\0228\n\024look_fi"
   "ele_req_group\030\' \001(\0132\032.chat.LookFileReque"
-  "stGroup\022\r\n\005heart\030\t \001(\t\"\304\001\n\024LookFileReque"
-  "stGroup\022\020\n\010username\030\001 \001(\t\0226\n\006result\030\002 \003("
-  "\0132&.chat.LookFileRequestGroup.ResultEntr"
-  "y\022\016\n\006u_name\030\003 \001(\t\022\016\n\006g_name\030\004 \001(\t\032B\n\013Res"
-  "ultEntry\022\013\n\003key\030\001 \001(\t\022\"\n\005value\030\002 \001(\0132\023.c"
-  "hat.FileListGroup:\0028\001\"\036\n\rFileListGroup\022\r"
-  "\n\005files\030\001 \003(\t\"^\n\rSendFileGroup\022\014\n\004name\030\005"
-  " \001(\t\022\016\n\006g_name\030\004 \001(\t\022\016\n\006u_name\030\001 \001(\t\022\021\n\t"
-  "file_name\030\002 \001(\t\022\014\n\004time\030\003 \001(\t\"^\n\rRecvFil"
-  "eGroup\022\014\n\004name\030\001 \001(\t\022\016\n\006u_name\030\004 \001(\t\022\016\n\006"
-  "g_name\030\005 \001(\t\022\021\n\tfile_name\030\002 \001(\t\022\014\n\004time\030"
-  "\003 \001(\t\"[\n\nDelManager\022\016\n\006u_name\030\001 \001(\t\022\016\n\006g"
-  "_name\030\002 \001(\t\022\020\n\010username\030\003 \001(\t\022\013\n\003msg\030\004 \001"
-  "(\t\022\016\n\006decide\030\005 \001(\010\"[\n\nAddManager\022\016\n\006u_na"
-  "me\030\001 \001(\t\022\016\n\006g_name\030\002 \001(\t\022\020\n\010username\030\003 \001"
-  "(\t\022\013\n\003msg\030\004 \001(\t\022\016\n\006decide\030\005 \001(\010\".\n\014Disba"
-  "ndGroup\022\016\n\006u_name\030\001 \001(\t\022\016\n\006g_name\030\002 \001(\t\""
-  "r\n\021DelMemberResponse\022\020\n\010username\030\001 \001(\t\022\016"
-  "\n\006u_name\030\002 \001(\t\022\016\n\006g_name\030\003 \001(\t\022\016\n\006decide"
-  "\030\004 \001(\010\022\013\n\003msg\030\005 \001(\t\022\016\n\006statue\030\006 \001(\t\"j\n\tD"
-  "elMember\022\020\n\010username\030\001 \001(\t\022\016\n\006u_name\030\002 \001"
+  "stGroup\022\r\n\005heart\030\t \001(\t\022%\n\013del_account\030( "
+  "\001(\0132\020.chat.delAccount\"\222\001\n\ndelAccount\022\014\n\004"
+  "name\030\001 \001(\t\0223\n\ngroup_name\030\002 \003(\0132\037.chat.de"
+  "lAccount.GroupNameEntry\022\017\n\007friends\030\004 \003(\t"
+  "\0320\n\016GroupNameEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value"
+  "\030\002 \001(\t:\0028\001\"\304\001\n\024LookFileRequestGroup\022\020\n\010u"
+  "sername\030\001 \001(\t\0226\n\006result\030\002 \003(\0132&.chat.Loo"
+  "kFileRequestGroup.ResultEntry\022\016\n\006u_name\030"
+  "\003 \001(\t\022\016\n\006g_name\030\004 \001(\t\032B\n\013ResultEntry\022\013\n\003"
+  "key\030\001 \001(\t\022\"\n\005value\030\002 \001(\0132\023.chat.FileList"
+  "Group:\0028\001\"\036\n\rFileListGroup\022\r\n\005files\030\001 \003("
+  "\t\"^\n\rSendFileGroup\022\014\n\004name\030\005 \001(\t\022\016\n\006g_na"
+  "me\030\004 \001(\t\022\016\n\006u_name\030\001 \001(\t\022\021\n\tfile_name\030\002 "
+  "\001(\t\022\014\n\004time\030\003 \001(\t\"^\n\rRecvFileGroup\022\014\n\004na"
+  "me\030\001 \001(\t\022\016\n\006u_name\030\004 \001(\t\022\016\n\006g_name\030\005 \001(\t"
+  "\022\021\n\tfile_name\030\002 \001(\t\022\014\n\004time\030\003 \001(\t\"[\n\nDel"
+  "Manager\022\016\n\006u_name\030\001 \001(\t\022\016\n\006g_name\030\002 \001(\t\022"
+  "\020\n\010username\030\003 \001(\t\022\013\n\003msg\030\004 \001(\t\022\016\n\006decide"
+  "\030\005 \001(\010\"[\n\nAddManager\022\016\n\006u_name\030\001 \001(\t\022\016\n\006"
+  "g_name\030\002 \001(\t\022\020\n\010username\030\003 \001(\t\022\013\n\003msg\030\004 "
+  "\001(\t\022\016\n\006decide\030\005 \001(\010\".\n\014DisbandGroup\022\016\n\006u"
+  "_name\030\001 \001(\t\022\016\n\006g_name\030\002 \001(\t\"r\n\021DelMember"
+  "Response\022\020\n\010username\030\001 \001(\t\022\016\n\006u_name\030\002 \001"
   "(\t\022\016\n\006g_name\030\003 \001(\t\022\016\n\006decide\030\004 \001(\010\022\013\n\003ms"
-  "g\030\005 \001(\t\022\016\n\006statue\030\006 \001(\t\"E\n\021AddMemberResp"
-  "onse\022\020\n\010username\030\001 \001(\t\022\016\n\006u_name\030\002 \001(\t\022\016"
-  "\n\006g_name\030\003 \001(\t\"Z\n\tAddMember\022\020\n\010username\030"
-  "\001 \001(\t\022\016\n\006u_name\030\002 \001(\t\022\016\n\006g_name\030\003 \001(\t\022\016\n"
-  "\006decide\030\004 \001(\010\022\013\n\003msg\030\005 \001(\t\"L\n\nLeaveGroup"
-  "\022\016\n\006u_name\030\001 \001(\t\022\016\n\006g_name\030\002 \001(\t\022\016\n\006deci"
-  "de\030\003 \001(\010\022\016\n\006statue\030\004 \001(\t\"<\n\rGroupChatLis"
-  "t\022\013\n\003msg\030\001 \003(\t\022\016\n\006u_name\030\002 \001(\t\022\016\n\006g_name"
-  "\030\003 \001(\t\"J\n\tGroupChat\022\013\n\003msg\030\001 \001(\t\022\020\n\010user"
-  "name\030\002 \001(\t\022\016\n\006u_name\030\003 \001(\t\022\016\n\006g_name\030\004 \001"
-  "(\t\"\220\001\n\014GroupMembers\022\016\n\006u_name\030\001 \001(\t\022\016\n\006g"
-  "_name\030\002 \001(\t\0220\n\007members\030\003 \003(\0132\037.chat.Grou"
-  "pMembers.MembersEntry\032.\n\014MembersEntry\022\013\n"
-  "\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"=\n\013ChoiceG"
-  "roup\022\016\n\006u_name\030\001 \001(\t\022\016\n\006g_name\030\002 \001(\t\022\016\n\006"
-  "statue\030\003 \001(\t\"q\n\013FindRequest\0221\n\010response\030"
-  "\001 \003(\0132\037.chat.FindRequest.ResponseEntry\032/"
-  "\n\rResponseEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 "
-  "\001(\014:\0028\001\";\n\tGroupList\022\020\n\010username\030\001 \001(\t\022\014"
-  "\n\004time\030\002 \001(\t\022\016\n\006groups\030\003 \003(\t\"h\n\tJoinGrou"
-  "p\022\016\n\006u_name\030\001 \001(\t\022\016\n\006g_name\030\002 \001(\t\022\020\n\010use"
-  "rname\030\003 \001(\t\022\016\n\006decide\030\004 \001(\010\022\014\n\004time\030\005 \001("
-  "\t\022\013\n\003msg\030\006 \001(\t\"p\n\021JoinGroupResponse\022\016\n\006u"
-  "_name\030\001 \001(\t\022\016\n\006g_name\030\002 \001(\t\022\020\n\010username\030"
-  "\003 \001(\t\022\016\n\006decide\030\004 \001(\010\022\014\n\004time\030\005 \001(\t\022\013\n\003m"
-  "sg\030\006 \001(\t\"\\\n\010AddGroup\022\020\n\010username\030\001 \001(\t\022\022"
-  "\n\ngroup_name\030\002 \001(\t\022\014\n\004time\030\003 \001(\t\022\013\n\003msg\030"
-  "\004 \001(\t\022\017\n\007success\030\005 \001(\010\"\225\001\n\017LookFileReque"
-  "st\022\020\n\010username\030\001 \001(\t\0221\n\006result\030\002 \003(\0132!.c"
-  "hat.LookFileRequest.ResultEntry\032=\n\013Resul"
-  "tEntry\022\013\n\003key\030\001 \001(\t\022\035\n\005value\030\002 \001(\0132\016.cha"
-  "t.FileList:\0028\001\"\031\n\010FileList\022\r\n\005files\030\001 \003("
-  "\t\"9\n\010SendFile\022\014\n\004name\030\001 \001(\t\022\021\n\tfile_name"
-  "\030\002 \001(\t\022\014\n\004time\030\003 \001(\t\"9\n\010RecvFile\022\014\n\004name"
-  "\030\001 \001(\t\022\021\n\tfile_name\030\002 \001(\t\022\014\n\004time\030\003 \001(\t\""
-  "\033\n\013BlockFriend\022\014\n\004name\030\001 \001(\t\"9\n\nOfflineM"
-  "SG\022\013\n\003msg\030\001 \003(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010usernam"
-  "e\030\003 \001(\t\"}\n\013UserRequest\022\020\n\010username\030\001 \001(\t"
-  "\022-\n\006result\030\003 \003(\0132\035.chat.UserRequest.Resu"
-  "ltEntry\032-\n\013ResultEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005v"
-  "alue\030\002 \001(\t:\0028\001\"(\n\005Login\022\r\n\005login\030\002 \001(\010\022\020"
-  "\n\010username\030\001 \001(\t\"\201\001\n\rLoginResponse\022\020\n\010us"
-  "ername\030\001 \001(\t\022/\n\006result\030\002 \003(\0132\037.chat.Logi"
-  "nResponse.ResultEntry\032-\n\013ResultEntry\022\013\n\003"
-  "key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"8\n\024DeleteFr"
-  "iendResponse\022\016\n\006result\030\001 \001(\010\022\020\n\010username"
-  "\030\002 \001(\t\"G\n\023DeleteFriendRequest\022\021\n\tfrom_na"
-  "me\030\001 \001(\t\022\017\n\007to_name\030\002 \001(\t\022\014\n\004time\030\003 \001(\t\""
-  "L\n\020AddFriendRequest\022\025\n\rfrom_username\030\001 \001"
-  "(\t\022\023\n\013to_username\030\002 \001(\t\022\014\n\004time\030\003 \001(\t\"b\n"
-  "\021AddFriendResponse\022\016\n\006decide\030\001 \001(\010\022\021\n\tfr"
-  "om_name\030\002 \001(\t\022\017\n\007to_name\030\003 \001(\t\022\013\n\003msg\030\004 "
-  "\001(\t\022\014\n\004time\030\005 \001(\t\"|\n\013FriendLists\022/\n\007frie"
-  "nds\030\001 \003(\0132\036.chat.FriendLists.FriendsEntr"
-  "y\022\014\n\004name\030\002 \001(\t\032.\n\014FriendsEntry\022\013\n\003key\030\001"
-  " \001(\t\022\r\n\005value\030\002 \001(\010:\0028\001\"e\n\021FriendChatMes"
-  "sage\022\021\n\tfrom_name\030\001 \001(\t\022\017\n\007to_name\030\002 \001(\t"
-  "\022\017\n\007message\030\003 \001(\t\022\014\n\004time\030\004 \001(\t\022\r\n\005block"
-  "\030\005 \001(\010*\247\002\n\007Actions\022\017\n\013ACTION_QUIT\020\000\022\t\n\005L"
-  "OGIN\020\025\022\013\n\007UNLOGIN\020\017\022\014\n\010ADDFDREQ\020\003\022\014\n\010ADD"
-  "FDRES\020\004\022\t\n\005HEART\020\005\022\n\n\006FDLIST\020\006\022\r\n\tFRIEND"
-  "MSG\020\007\022\013\n\007USERNTF\020\010\022\r\n\tUNUSERNTF\020\t\022\014\n\010DEL"
-  "FDREQ\020\n\022\014\n\010DELFDRES\020\013\022\014\n\010RESPONSE\020\014\022\016\n\nO"
-  "FFLINEMSG\020\r\022\r\n\tLOGINLIST\020\016\022\017\n\013BLOCKFRIEN"
-  "D\020\020\022\021\n\rUNBLOCKFRIEND\020\021\022\014\n\010SENDFILE\020\022\022\014\n\010"
-  "RECVFILE\020\023\022\014\n\010LOOKFILE\020\024*\216\003\n\005Group\022\016\n\nGR"
-  "OUP_QUIT\020\000\022\r\n\tGROUPLIST\020\001\022\014\n\010ADDGROUP\020\002\022"
-  "\r\n\tJOINGROUP\020\003\022\025\n\021JOINGROUPRESPONSE\020\004\022\013\n"
-  "\007FINDREQ\020\005\022\017\n\013CHOICEGROUP\020\006\022\020\n\014GROUPMEMB"
-  "ERS\020\007\022\014\n\010GROUPMSG\020\010\022\021\n\rCHATGROUPLIST\020\t\022\016"
-  "\n\nLEAVEGROUP\020\n\022\r\n\tADDMEMBER\020\013\022\r\n\tDELMEMB"
-  "ER\020\014\022\020\n\014ADDMEMBERRES\020\r\022\020\n\014DELMEMBERRES\020\016"
-  "\022\020\n\014DISBANDGROUP\020\017\022\016\n\nADDMANAGER\020\020\022\021\n\rAD"
-  "DMANAGERRES\020\022\022\016\n\nDELMANAGER\020\021\022\021\n\rDELMANA"
-  "GERRES\020\023\022\021\n\rSENDFILEGROUP\020\024\022\021\n\rRECVFILEG"
-  "ROUP\020\025\022\021\n\rLOOKFILEGROUP\020\026b\006proto3"
+  "g\030\005 \001(\t\022\016\n\006statue\030\006 \001(\t\"j\n\tDelMember\022\020\n\010"
+  "username\030\001 \001(\t\022\016\n\006u_name\030\002 \001(\t\022\016\n\006g_name"
+  "\030\003 \001(\t\022\016\n\006decide\030\004 \001(\010\022\013\n\003msg\030\005 \001(\t\022\016\n\006s"
+  "tatue\030\006 \001(\t\"E\n\021AddMemberResponse\022\020\n\010user"
+  "name\030\001 \001(\t\022\016\n\006u_name\030\002 \001(\t\022\016\n\006g_name\030\003 \001"
+  "(\t\"Z\n\tAddMember\022\020\n\010username\030\001 \001(\t\022\016\n\006u_n"
+  "ame\030\002 \001(\t\022\016\n\006g_name\030\003 \001(\t\022\016\n\006decide\030\004 \001("
+  "\010\022\013\n\003msg\030\005 \001(\t\"L\n\nLeaveGroup\022\016\n\006u_name\030\001"
+  " \001(\t\022\016\n\006g_name\030\002 \001(\t\022\016\n\006decide\030\003 \001(\010\022\016\n\006"
+  "statue\030\004 \001(\t\"<\n\rGroupChatList\022\013\n\003msg\030\001 \003"
+  "(\t\022\016\n\006u_name\030\002 \001(\t\022\016\n\006g_name\030\003 \001(\t\"J\n\tGr"
+  "oupChat\022\013\n\003msg\030\001 \001(\t\022\020\n\010username\030\002 \001(\t\022\016"
+  "\n\006u_name\030\003 \001(\t\022\016\n\006g_name\030\004 \001(\t\"\220\001\n\014Group"
+  "Members\022\016\n\006u_name\030\001 \001(\t\022\016\n\006g_name\030\002 \001(\t\022"
+  "0\n\007members\030\003 \003(\0132\037.chat.GroupMembers.Mem"
+  "bersEntry\032.\n\014MembersEntry\022\013\n\003key\030\001 \001(\t\022\r"
+  "\n\005value\030\002 \001(\t:\0028\001\"=\n\013ChoiceGroup\022\016\n\006u_na"
+  "me\030\001 \001(\t\022\016\n\006g_name\030\002 \001(\t\022\016\n\006statue\030\003 \001(\t"
+  "\"q\n\013FindRequest\0221\n\010response\030\001 \003(\0132\037.chat"
+  ".FindRequest.ResponseEntry\032/\n\rResponseEn"
+  "try\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\";\n\tG"
+  "roupList\022\020\n\010username\030\001 \001(\t\022\014\n\004time\030\002 \001(\t"
+  "\022\016\n\006groups\030\003 \003(\t\"h\n\tJoinGroup\022\016\n\006u_name\030"
+  "\001 \001(\t\022\016\n\006g_name\030\002 \001(\t\022\020\n\010username\030\003 \001(\t\022"
+  "\016\n\006decide\030\004 \001(\010\022\014\n\004time\030\005 \001(\t\022\013\n\003msg\030\006 \001"
+  "(\t\"p\n\021JoinGroupResponse\022\016\n\006u_name\030\001 \001(\t\022"
+  "\016\n\006g_name\030\002 \001(\t\022\020\n\010username\030\003 \001(\t\022\016\n\006dec"
+  "ide\030\004 \001(\010\022\014\n\004time\030\005 \001(\t\022\013\n\003msg\030\006 \001(\t\"\\\n\010"
+  "AddGroup\022\020\n\010username\030\001 \001(\t\022\022\n\ngroup_name"
+  "\030\002 \001(\t\022\014\n\004time\030\003 \001(\t\022\013\n\003msg\030\004 \001(\t\022\017\n\007suc"
+  "cess\030\005 \001(\010\"\225\001\n\017LookFileRequest\022\020\n\010userna"
+  "me\030\001 \001(\t\0221\n\006result\030\002 \003(\0132!.chat.LookFile"
+  "Request.ResultEntry\032=\n\013ResultEntry\022\013\n\003ke"
+  "y\030\001 \001(\t\022\035\n\005value\030\002 \001(\0132\016.chat.FileList:\002"
+  "8\001\"\031\n\010FileList\022\r\n\005files\030\001 \003(\t\"9\n\010SendFil"
+  "e\022\014\n\004name\030\001 \001(\t\022\021\n\tfile_name\030\002 \001(\t\022\014\n\004ti"
+  "me\030\003 \001(\t\"9\n\010RecvFile\022\014\n\004name\030\001 \001(\t\022\021\n\tfi"
+  "le_name\030\002 \001(\t\022\014\n\004time\030\003 \001(\t\"\033\n\013BlockFrie"
+  "nd\022\014\n\004name\030\001 \001(\t\"9\n\nOfflineMSG\022\013\n\003msg\030\001 "
+  "\003(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010username\030\003 \001(\t\"}\n\013U"
+  "serRequest\022\020\n\010username\030\001 \001(\t\022-\n\006result\030\003"
+  " \003(\0132\035.chat.UserRequest.ResultEntry\032-\n\013R"
+  "esultEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\002"
+  "8\001\"(\n\005Login\022\r\n\005login\030\002 \001(\010\022\020\n\010username\030\001"
+  " \001(\t\"\201\001\n\rLoginResponse\022\020\n\010username\030\001 \001(\t"
+  "\022/\n\006result\030\002 \003(\0132\037.chat.LoginResponse.Re"
+  "sultEntry\032-\n\013ResultEntry\022\013\n\003key\030\001 \001(\t\022\r\n"
+  "\005value\030\002 \001(\t:\0028\001\"8\n\024DeleteFriendResponse"
+  "\022\016\n\006result\030\001 \001(\010\022\020\n\010username\030\002 \001(\t\"G\n\023De"
+  "leteFriendRequest\022\021\n\tfrom_name\030\001 \001(\t\022\017\n\007"
+  "to_name\030\002 \001(\t\022\014\n\004time\030\003 \001(\t\"L\n\020AddFriend"
+  "Request\022\025\n\rfrom_username\030\001 \001(\t\022\023\n\013to_use"
+  "rname\030\002 \001(\t\022\014\n\004time\030\003 \001(\t\"b\n\021AddFriendRe"
+  "sponse\022\016\n\006decide\030\001 \001(\010\022\021\n\tfrom_name\030\002 \001("
+  "\t\022\017\n\007to_name\030\003 \001(\t\022\013\n\003msg\030\004 \001(\t\022\014\n\004time\030"
+  "\005 \001(\t\"|\n\013FriendLists\022/\n\007friends\030\001 \003(\0132\036."
+  "chat.FriendLists.FriendsEntry\022\014\n\004name\030\002 "
+  "\001(\t\032.\n\014FriendsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005valu"
+  "e\030\002 \001(\010:\0028\001\"e\n\021FriendChatMessage\022\021\n\tfrom"
+  "_name\030\001 \001(\t\022\017\n\007to_name\030\002 \001(\t\022\017\n\007message\030"
+  "\003 \001(\t\022\014\n\004time\030\004 \001(\t\022\r\n\005block\030\005 \001(\010*\267\002\n\007A"
+  "ctions\022\017\n\013ACTION_QUIT\020\000\022\t\n\005LOGIN\020\025\022\013\n\007UN"
+  "LOGIN\020\017\022\014\n\010ADDFDREQ\020\003\022\014\n\010ADDFDRES\020\004\022\t\n\005H"
+  "EART\020\005\022\n\n\006FDLIST\020\006\022\r\n\tFRIENDMSG\020\007\022\013\n\007USE"
+  "RNTF\020\010\022\r\n\tUNUSERNTF\020\t\022\014\n\010DELFDREQ\020\n\022\014\n\010D"
+  "ELFDRES\020\013\022\014\n\010RESPONSE\020\014\022\016\n\nOFFLINEMSG\020\r\022"
+  "\r\n\tLOGINLIST\020\016\022\017\n\013BLOCKFRIEND\020\020\022\021\n\rUNBLO"
+  "CKFRIEND\020\021\022\014\n\010SENDFILE\020\022\022\014\n\010RECVFILE\020\023\022\014"
+  "\n\010LOOKFILE\020\024\022\016\n\nDELACCOUNT\020\026*\216\003\n\005Group\022\016"
+  "\n\nGROUP_QUIT\020\000\022\r\n\tGROUPLIST\020\001\022\014\n\010ADDGROU"
+  "P\020\002\022\r\n\tJOINGROUP\020\003\022\025\n\021JOINGROUPRESPONSE\020"
+  "\004\022\013\n\007FINDREQ\020\005\022\017\n\013CHOICEGROUP\020\006\022\020\n\014GROUP"
+  "MEMBERS\020\007\022\014\n\010GROUPMSG\020\010\022\021\n\rCHATGROUPLIST"
+  "\020\t\022\016\n\nLEAVEGROUP\020\n\022\r\n\tADDMEMBER\020\013\022\r\n\tDEL"
+  "MEMBER\020\014\022\020\n\014ADDMEMBERRES\020\r\022\020\n\014DELMEMBERR"
+  "ES\020\016\022\020\n\014DISBANDGROUP\020\017\022\016\n\nADDMANAGER\020\020\022\021"
+  "\n\rADDMANAGERRES\020\022\022\016\n\nDELMANAGER\020\021\022\021\n\rDEL"
+  "MANAGERRES\020\023\022\021\n\rSENDFILEGROUP\020\024\022\021\n\rRECVF"
+  "ILEGROUP\020\025\022\021\n\rLOOKFILEGROUP\020\026b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_user_5fchat_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_user_5fchat_2eproto = {
-    false, false, 5433, descriptor_table_protodef_user_5fchat_2eproto,
+    false, false, 5637, descriptor_table_protodef_user_5fchat_2eproto,
     "user_chat.proto",
-    &descriptor_table_user_5fchat_2eproto_once, nullptr, 0, 44,
+    &descriptor_table_user_5fchat_2eproto_once, nullptr, 0, 46,
     schemas, file_default_instances, TableStruct_user_5fchat_2eproto::offsets,
     file_level_metadata_user_5fchat_2eproto, file_level_enum_descriptors_user_5fchat_2eproto,
     file_level_service_descriptors_user_5fchat_2eproto,
@@ -1439,6 +1495,7 @@ bool Actions_IsValid(int value) {
     case 19:
     case 20:
     case 21:
+    case 22:
       return true;
     default:
       return false;
@@ -1520,6 +1577,7 @@ class Chat::_Internal {
   static const ::chat::SendFileGroup& send_file_group(const Chat* msg);
   static const ::chat::FileListGroup& file_list_group(const Chat* msg);
   static const ::chat::LookFileRequestGroup& look_fiele_req_group(const Chat* msg);
+  static const ::chat::delAccount& del_account(const Chat* msg);
 };
 
 const ::chat::FriendChatMessage&
@@ -1662,6 +1720,10 @@ const ::chat::LookFileRequestGroup&
 Chat::_Internal::look_fiele_req_group(const Chat* msg) {
   return *msg->_impl_.look_fiele_req_group_;
 }
+const ::chat::delAccount&
+Chat::_Internal::del_account(const Chat* msg) {
+  return *msg->_impl_.del_account_;
+}
 Chat::Chat(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -1708,6 +1770,7 @@ Chat::Chat(const Chat& from)
     , decltype(_impl_.send_file_group_){nullptr}
     , decltype(_impl_.file_list_group_){nullptr}
     , decltype(_impl_.look_fiele_req_group_){nullptr}
+    , decltype(_impl_.del_account_){nullptr}
     , decltype(_impl_.action_){}
     , decltype(_impl_.group_){}
     , /*decltype(_impl_._cached_size_)*/{}};
@@ -1826,6 +1889,9 @@ Chat::Chat(const Chat& from)
   if (from._internal_has_look_fiele_req_group()) {
     _this->_impl_.look_fiele_req_group_ = new ::chat::LookFileRequestGroup(*from._impl_.look_fiele_req_group_);
   }
+  if (from._internal_has_del_account()) {
+    _this->_impl_.del_account_ = new ::chat::delAccount(*from._impl_.del_account_);
+  }
   ::memcpy(&_impl_.action_, &from._impl_.action_,
     static_cast<size_t>(reinterpret_cast<char*>(&_impl_.group_) -
     reinterpret_cast<char*>(&_impl_.action_)) + sizeof(_impl_.group_));
@@ -1873,6 +1939,7 @@ inline void Chat::SharedCtor(
     , decltype(_impl_.send_file_group_){nullptr}
     , decltype(_impl_.file_list_group_){nullptr}
     , decltype(_impl_.look_fiele_req_group_){nullptr}
+    , decltype(_impl_.del_account_){nullptr}
     , decltype(_impl_.action_){0}
     , decltype(_impl_.group_){0}
     , /*decltype(_impl_._cached_size_)*/{}
@@ -1930,6 +1997,7 @@ inline void Chat::SharedDtor() {
   if (this != internal_default_instance()) delete _impl_.send_file_group_;
   if (this != internal_default_instance()) delete _impl_.file_list_group_;
   if (this != internal_default_instance()) delete _impl_.look_fiele_req_group_;
+  if (this != internal_default_instance()) delete _impl_.del_account_;
 }
 
 void Chat::SetCachedSize(int size) const {
@@ -2083,6 +2151,10 @@ void Chat::Clear() {
     delete _impl_.look_fiele_req_group_;
   }
   _impl_.look_fiele_req_group_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.del_account_ != nullptr) {
+    delete _impl_.del_account_;
+  }
+  _impl_.del_account_ = nullptr;
   ::memset(&_impl_.action_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&_impl_.group_) -
       reinterpret_cast<char*>(&_impl_.action_)) + sizeof(_impl_.group_));
@@ -2403,6 +2475,14 @@ const char* Chat::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
         } else
           goto handle_unusual;
         continue;
+      // .chat.delAccount del_account = 40;
+      case 40:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
+          ptr = ctx->ParseMessage(_internal_mutable_del_account(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -2701,6 +2781,13 @@ uint8_t* Chat::_InternalSerialize(
         _Internal::look_fiele_req_group(this).GetCachedSize(), target, stream);
   }
 
+  // .chat.delAccount del_account = 40;
+  if (this->_internal_has_del_account()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(40, _Internal::del_account(this),
+        _Internal::del_account(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2969,6 +3056,13 @@ size_t Chat::ByteSizeLong() const {
         *_impl_.look_fiele_req_group_);
   }
 
+  // .chat.delAccount del_account = 40;
+  if (this->_internal_has_del_account()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.del_account_);
+  }
+
   // .chat.Actions action = 1;
   if (this->_internal_action() != 0) {
     total_size += 1 +
@@ -3142,6 +3236,10 @@ void Chat::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_
     _this->_internal_mutable_look_fiele_req_group()->::chat::LookFileRequestGroup::MergeFrom(
         from._internal_look_fiele_req_group());
   }
+  if (from._internal_has_del_account()) {
+    _this->_internal_mutable_del_account()->::chat::delAccount::MergeFrom(
+        from._internal_del_account());
+  }
   if (from._internal_action() != 0) {
     _this->_internal_set_action(from._internal_action());
   }
@@ -3187,6 +3285,330 @@ void Chat::InternalSwap(Chat* other) {
 
 // ===================================================================
 
+delAccount_GroupNameEntry_DoNotUse::delAccount_GroupNameEntry_DoNotUse() {}
+delAccount_GroupNameEntry_DoNotUse::delAccount_GroupNameEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+    : SuperType(arena) {}
+void delAccount_GroupNameEntry_DoNotUse::MergeFrom(const delAccount_GroupNameEntry_DoNotUse& other) {
+  MergeFromInternal(other);
+}
+::PROTOBUF_NAMESPACE_ID::Metadata delAccount_GroupNameEntry_DoNotUse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
+      file_level_metadata_user_5fchat_2eproto[1]);
+}
+
+// ===================================================================
+
+class delAccount::_Internal {
+ public:
+};
+
+delAccount::delAccount(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  if (arena != nullptr && !is_message_owned) {
+    arena->OwnCustomDestructor(this, &delAccount::ArenaDtor);
+  }
+  // @@protoc_insertion_point(arena_constructor:chat.delAccount)
+}
+delAccount::delAccount(const delAccount& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  delAccount* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      /*decltype(_impl_.group_name_)*/{}
+    , decltype(_impl_.friends_){from._impl_.friends_}
+    , decltype(_impl_.name_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.group_name_.MergeFrom(from._impl_.group_name_);
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:chat.delAccount)
+}
+
+inline void delAccount::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      /*decltype(_impl_.group_name_)*/{::_pbi::ArenaInitialized(), arena}
+    , decltype(_impl_.friends_){arena}
+    , decltype(_impl_.name_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+delAccount::~delAccount() {
+  // @@protoc_insertion_point(destructor:chat.delAccount)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    ArenaDtor(this);
+    return;
+  }
+  SharedDtor();
+}
+
+inline void delAccount::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.group_name_.Destruct();
+  _impl_.group_name_.~MapField();
+  _impl_.friends_.~RepeatedPtrField();
+  _impl_.name_.Destroy();
+}
+
+void delAccount::ArenaDtor(void* object) {
+  delAccount* _this = reinterpret_cast< delAccount* >(object);
+  _this->_impl_.group_name_.Destruct();
+}
+void delAccount::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void delAccount::Clear() {
+// @@protoc_insertion_point(message_clear_start:chat.delAccount)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.group_name_.Clear();
+  _impl_.friends_.Clear();
+  _impl_.name_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* delAccount::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "chat.delAccount.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // map<string, string> group_name = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(&_impl_.group_name_, ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string friends = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_friends();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "chat.delAccount.friends"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<34>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* delAccount::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:chat.delAccount)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1;
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "chat.delAccount.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // map<string, string> group_name = 2;
+  if (!this->_internal_group_name().empty()) {
+    using MapType = ::_pb::Map<std::string, std::string>;
+    using WireHelper = delAccount_GroupNameEntry_DoNotUse::Funcs;
+    const auto& map_field = this->_internal_group_name();
+    auto check_utf8 = [](const MapType::value_type& entry) {
+      (void)entry;
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+        entry.first.data(), static_cast<int>(entry.first.length()),
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+        "chat.delAccount.GroupNameEntry.key");
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+        entry.second.data(), static_cast<int>(entry.second.length()),
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+        "chat.delAccount.GroupNameEntry.value");
+    };
+
+    if (stream->IsSerializationDeterministic() && map_field.size() > 1) {
+      for (const auto& entry : ::_pbi::MapSorterPtr<MapType>(map_field)) {
+        target = WireHelper::InternalSerialize(2, entry.first, entry.second, target, stream);
+        check_utf8(entry);
+      }
+    } else {
+      for (const auto& entry : map_field) {
+        target = WireHelper::InternalSerialize(2, entry.first, entry.second, target, stream);
+        check_utf8(entry);
+      }
+    }
+  }
+
+  // repeated string friends = 4;
+  for (int i = 0, n = this->_internal_friends_size(); i < n; i++) {
+    const auto& s = this->_internal_friends(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "chat.delAccount.friends");
+    target = stream->WriteString(4, s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:chat.delAccount)
+  return target;
+}
+
+size_t delAccount::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:chat.delAccount)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // map<string, string> group_name = 2;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_group_name_size());
+  for (::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >::const_iterator
+      it = this->_internal_group_name().begin();
+      it != this->_internal_group_name().end(); ++it) {
+    total_size += delAccount_GroupNameEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
+  }
+
+  // repeated string friends = 4;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.friends_.size());
+  for (int i = 0, n = _impl_.friends_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      _impl_.friends_.Get(i));
+  }
+
+  // string name = 1;
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData delAccount::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    delAccount::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*delAccount::GetClassData() const { return &_class_data_; }
+
+
+void delAccount::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<delAccount*>(&to_msg);
+  auto& from = static_cast<const delAccount&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:chat.delAccount)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.group_name_.MergeFrom(from._impl_.group_name_);
+  _this->_impl_.friends_.MergeFrom(from._impl_.friends_);
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void delAccount::CopyFrom(const delAccount& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:chat.delAccount)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool delAccount::IsInitialized() const {
+  return true;
+}
+
+void delAccount::InternalSwap(delAccount* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.group_name_.InternalSwap(&other->_impl_.group_name_);
+  _impl_.friends_.InternalSwap(&other->_impl_.friends_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata delAccount::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
+      file_level_metadata_user_5fchat_2eproto[2]);
+}
+
+// ===================================================================
+
 LookFileRequestGroup_ResultEntry_DoNotUse::LookFileRequestGroup_ResultEntry_DoNotUse() {}
 LookFileRequestGroup_ResultEntry_DoNotUse::LookFileRequestGroup_ResultEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
     : SuperType(arena) {}
@@ -3196,7 +3618,7 @@ void LookFileRequestGroup_ResultEntry_DoNotUse::MergeFrom(const LookFileRequestG
 ::PROTOBUF_NAMESPACE_ID::Metadata LookFileRequestGroup_ResultEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[1]);
+      file_level_metadata_user_5fchat_2eproto[3]);
 }
 
 // ===================================================================
@@ -3563,7 +3985,7 @@ void LookFileRequestGroup::InternalSwap(LookFileRequestGroup* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata LookFileRequestGroup::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[2]);
+      file_level_metadata_user_5fchat_2eproto[4]);
 }
 
 // ===================================================================
@@ -3753,7 +4175,7 @@ void FileListGroup::InternalSwap(FileListGroup* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata FileListGroup::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[3]);
+      file_level_metadata_user_5fchat_2eproto[5]);
 }
 
 // ===================================================================
@@ -4156,7 +4578,7 @@ void SendFileGroup::InternalSwap(SendFileGroup* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata SendFileGroup::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[4]);
+      file_level_metadata_user_5fchat_2eproto[6]);
 }
 
 // ===================================================================
@@ -4559,7 +4981,7 @@ void RecvFileGroup::InternalSwap(RecvFileGroup* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RecvFileGroup::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[5]);
+      file_level_metadata_user_5fchat_2eproto[7]);
 }
 
 // ===================================================================
@@ -4939,7 +5361,7 @@ void DelManager::InternalSwap(DelManager* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DelManager::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[6]);
+      file_level_metadata_user_5fchat_2eproto[8]);
 }
 
 // ===================================================================
@@ -5319,7 +5741,7 @@ void AddManager::InternalSwap(AddManager* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AddManager::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[7]);
+      file_level_metadata_user_5fchat_2eproto[9]);
 }
 
 // ===================================================================
@@ -5572,7 +5994,7 @@ void DisbandGroup::InternalSwap(DisbandGroup* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DisbandGroup::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[8]);
+      file_level_metadata_user_5fchat_2eproto[10]);
 }
 
 // ===================================================================
@@ -6002,7 +6424,7 @@ void DelMemberResponse::InternalSwap(DelMemberResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DelMemberResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[9]);
+      file_level_metadata_user_5fchat_2eproto[11]);
 }
 
 // ===================================================================
@@ -6432,7 +6854,7 @@ void DelMember::InternalSwap(DelMember* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DelMember::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[10]);
+      file_level_metadata_user_5fchat_2eproto[12]);
 }
 
 // ===================================================================
@@ -6735,7 +7157,7 @@ void AddMemberResponse::InternalSwap(AddMemberResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AddMemberResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[11]);
+      file_level_metadata_user_5fchat_2eproto[13]);
 }
 
 // ===================================================================
@@ -7115,7 +7537,7 @@ void AddMember::InternalSwap(AddMember* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AddMember::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[12]);
+      file_level_metadata_user_5fchat_2eproto[14]);
 }
 
 // ===================================================================
@@ -7445,7 +7867,7 @@ void LeaveGroup::InternalSwap(LeaveGroup* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata LeaveGroup::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[13]);
+      file_level_metadata_user_5fchat_2eproto[15]);
 }
 
 // ===================================================================
@@ -7737,7 +8159,7 @@ void GroupChatList::InternalSwap(GroupChatList* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GroupChatList::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[14]);
+      file_level_metadata_user_5fchat_2eproto[16]);
 }
 
 // ===================================================================
@@ -8090,7 +8512,7 @@ void GroupChat::InternalSwap(GroupChat* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GroupChat::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[15]);
+      file_level_metadata_user_5fchat_2eproto[17]);
 }
 
 // ===================================================================
@@ -8104,7 +8526,7 @@ void GroupMembers_MembersEntry_DoNotUse::MergeFrom(const GroupMembers_MembersEnt
 ::PROTOBUF_NAMESPACE_ID::Metadata GroupMembers_MembersEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[16]);
+      file_level_metadata_user_5fchat_2eproto[18]);
 }
 
 // ===================================================================
@@ -8425,7 +8847,7 @@ void GroupMembers::InternalSwap(GroupMembers* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GroupMembers::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[17]);
+      file_level_metadata_user_5fchat_2eproto[19]);
 }
 
 // ===================================================================
@@ -8728,7 +9150,7 @@ void ChoiceGroup::InternalSwap(ChoiceGroup* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ChoiceGroup::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[18]);
+      file_level_metadata_user_5fchat_2eproto[20]);
 }
 
 // ===================================================================
@@ -8742,7 +9164,7 @@ void FindRequest_ResponseEntry_DoNotUse::MergeFrom(const FindRequest_ResponseEnt
 ::PROTOBUF_NAMESPACE_ID::Metadata FindRequest_ResponseEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[19]);
+      file_level_metadata_user_5fchat_2eproto[21]);
 }
 
 // ===================================================================
@@ -8957,7 +9379,7 @@ void FindRequest::InternalSwap(FindRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata FindRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[20]);
+      file_level_metadata_user_5fchat_2eproto[22]);
 }
 
 // ===================================================================
@@ -9249,7 +9671,7 @@ void GroupList::InternalSwap(GroupList* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GroupList::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[21]);
+      file_level_metadata_user_5fchat_2eproto[23]);
 }
 
 // ===================================================================
@@ -9679,7 +10101,7 @@ void JoinGroup::InternalSwap(JoinGroup* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata JoinGroup::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[22]);
+      file_level_metadata_user_5fchat_2eproto[24]);
 }
 
 // ===================================================================
@@ -10109,7 +10531,7 @@ void JoinGroupResponse::InternalSwap(JoinGroupResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata JoinGroupResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[23]);
+      file_level_metadata_user_5fchat_2eproto[25]);
 }
 
 // ===================================================================
@@ -10489,7 +10911,7 @@ void AddGroup::InternalSwap(AddGroup* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AddGroup::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[24]);
+      file_level_metadata_user_5fchat_2eproto[26]);
 }
 
 // ===================================================================
@@ -10503,7 +10925,7 @@ void LookFileRequest_ResultEntry_DoNotUse::MergeFrom(const LookFileRequest_Resul
 ::PROTOBUF_NAMESPACE_ID::Metadata LookFileRequest_ResultEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[25]);
+      file_level_metadata_user_5fchat_2eproto[27]);
 }
 
 // ===================================================================
@@ -10770,7 +11192,7 @@ void LookFileRequest::InternalSwap(LookFileRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata LookFileRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[26]);
+      file_level_metadata_user_5fchat_2eproto[28]);
 }
 
 // ===================================================================
@@ -10960,7 +11382,7 @@ void FileList::InternalSwap(FileList* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata FileList::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[27]);
+      file_level_metadata_user_5fchat_2eproto[29]);
 }
 
 // ===================================================================
@@ -11263,7 +11685,7 @@ void SendFile::InternalSwap(SendFile* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata SendFile::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[28]);
+      file_level_metadata_user_5fchat_2eproto[30]);
 }
 
 // ===================================================================
@@ -11566,7 +11988,7 @@ void RecvFile::InternalSwap(RecvFile* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RecvFile::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[29]);
+      file_level_metadata_user_5fchat_2eproto[31]);
 }
 
 // ===================================================================
@@ -11769,7 +12191,7 @@ void BlockFriend::InternalSwap(BlockFriend* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata BlockFriend::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[30]);
+      file_level_metadata_user_5fchat_2eproto[32]);
 }
 
 // ===================================================================
@@ -12061,7 +12483,7 @@ void OfflineMSG::InternalSwap(OfflineMSG* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata OfflineMSG::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[31]);
+      file_level_metadata_user_5fchat_2eproto[33]);
 }
 
 // ===================================================================
@@ -12075,7 +12497,7 @@ void UserRequest_ResultEntry_DoNotUse::MergeFrom(const UserRequest_ResultEntry_D
 ::PROTOBUF_NAMESPACE_ID::Metadata UserRequest_ResultEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[32]);
+      file_level_metadata_user_5fchat_2eproto[34]);
 }
 
 // ===================================================================
@@ -12346,7 +12768,7 @@ void UserRequest::InternalSwap(UserRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata UserRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[33]);
+      file_level_metadata_user_5fchat_2eproto[35]);
 }
 
 // ===================================================================
@@ -12576,7 +12998,7 @@ void Login::InternalSwap(Login* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Login::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[34]);
+      file_level_metadata_user_5fchat_2eproto[36]);
 }
 
 // ===================================================================
@@ -12590,7 +13012,7 @@ void LoginResponse_ResultEntry_DoNotUse::MergeFrom(const LoginResponse_ResultEnt
 ::PROTOBUF_NAMESPACE_ID::Metadata LoginResponse_ResultEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[35]);
+      file_level_metadata_user_5fchat_2eproto[37]);
 }
 
 // ===================================================================
@@ -12861,7 +13283,7 @@ void LoginResponse::InternalSwap(LoginResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata LoginResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[36]);
+      file_level_metadata_user_5fchat_2eproto[38]);
 }
 
 // ===================================================================
@@ -13091,7 +13513,7 @@ void DeleteFriendResponse::InternalSwap(DeleteFriendResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteFriendResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[37]);
+      file_level_metadata_user_5fchat_2eproto[39]);
 }
 
 // ===================================================================
@@ -13394,7 +13816,7 @@ void DeleteFriendRequest::InternalSwap(DeleteFriendRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteFriendRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[38]);
+      file_level_metadata_user_5fchat_2eproto[40]);
 }
 
 // ===================================================================
@@ -13697,7 +14119,7 @@ void AddFriendRequest::InternalSwap(AddFriendRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AddFriendRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[39]);
+      file_level_metadata_user_5fchat_2eproto[41]);
 }
 
 // ===================================================================
@@ -14077,7 +14499,7 @@ void AddFriendResponse::InternalSwap(AddFriendResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AddFriendResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[40]);
+      file_level_metadata_user_5fchat_2eproto[42]);
 }
 
 // ===================================================================
@@ -14091,7 +14513,7 @@ void FriendLists_FriendsEntry_DoNotUse::MergeFrom(const FriendLists_FriendsEntry
 ::PROTOBUF_NAMESPACE_ID::Metadata FriendLists_FriendsEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[41]);
+      file_level_metadata_user_5fchat_2eproto[43]);
 }
 
 // ===================================================================
@@ -14358,7 +14780,7 @@ void FriendLists::InternalSwap(FriendLists* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata FriendLists::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[42]);
+      file_level_metadata_user_5fchat_2eproto[44]);
 }
 
 // ===================================================================
@@ -14738,7 +15160,7 @@ void FriendChatMessage::InternalSwap(FriendChatMessage* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata FriendChatMessage::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_user_5fchat_2eproto_getter, &descriptor_table_user_5fchat_2eproto_once,
-      file_level_metadata_user_5fchat_2eproto[43]);
+      file_level_metadata_user_5fchat_2eproto[45]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -14747,6 +15169,14 @@ PROTOBUF_NAMESPACE_OPEN
 template<> PROTOBUF_NOINLINE ::chat::Chat*
 Arena::CreateMaybeMessage< ::chat::Chat >(Arena* arena) {
   return Arena::CreateMessageInternal< ::chat::Chat >(arena);
+}
+template<> PROTOBUF_NOINLINE ::chat::delAccount_GroupNameEntry_DoNotUse*
+Arena::CreateMaybeMessage< ::chat::delAccount_GroupNameEntry_DoNotUse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::chat::delAccount_GroupNameEntry_DoNotUse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::chat::delAccount*
+Arena::CreateMaybeMessage< ::chat::delAccount >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::chat::delAccount >(arena);
 }
 template<> PROTOBUF_NOINLINE ::chat::LookFileRequestGroup_ResultEntry_DoNotUse*
 Arena::CreateMaybeMessage< ::chat::LookFileRequestGroup_ResultEntry_DoNotUse >(Arena* arena) {
