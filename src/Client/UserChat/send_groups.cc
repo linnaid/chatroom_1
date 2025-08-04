@@ -336,40 +336,43 @@ void UserChat::recive_file_group() {
         std::cout << "\033[34m这个群友没有发送群文件---\033[0m" << std::endl;
         return;
     }
+    std::string f;
+    std::cout << "\033[34m📝请输入文件的名字吧:\033[0m" << std::endl;
+    getline(std::cin, f);
 
     auto it = group_files.find(name);
     // std::cout << *this->friends_files[name].begin() << ":123:" << *this->friends_files[name].end() << std::endl;
     for(const auto& file : this->group_files[name]) {
-        std::cout << file << std::endl;
-    
-        chat::Chat chat_file;
-        chat_file.set_group(chat::Group::RECVFILEGROUP);
-        chat::RecvFileGroup* recv_file = chat_file.mutable_recv_file_group();
-        recv_file->set_name(name);
-        recv_file->set_u_name(user_name);
-        recv_file->set_g_name(group_name);
-        recv_file->set_file_name(file);
-        std::string buf;
-        chat_file.SerializeToString(&buf);
-        Send(buf);
-        std::string g_name = user_name + "---" + group_name;
-        auto client = std::make_shared<FTPClient>("DOWNLOAD", g_name, name, file, file);
-        std::thread file2([client]() {
-            client->init();
-        });
-        file2.detach();
+        std::cout << f << std::endl;
+        if(f == file) {
+            chat::Chat chat_file;
+            chat_file.set_group(chat::Group::RECVFILEGROUP);
+            chat::RecvFileGroup* recv_file = chat_file.mutable_recv_file_group();
+            recv_file->set_name(name);
+            recv_file->set_u_name(user_name);
+            recv_file->set_g_name(group_name);
+            recv_file->set_file_name(file);
+            std::string buf;
+            chat_file.SerializeToString(&buf);
+            Send(buf);
+            std::string g_name = user_name + "---" + group_name;
+            auto client = std::make_shared<FTPClient>("DOWNLOAD", g_name, name, file, file);
+            std::thread file2([client]() {
+                client->init();
+            });
+            file2.detach();
 
-        if(it != group_files.end()) {
-            auto& vec = it->second;
-            auto pos = std::find(vec.begin(), vec.end(), file);
-            if(pos != vec.end()) {
-                vec.erase(pos);
+            if(it != group_files.end()) {
+                auto& vec = it->second;
+                auto pos = std::find(vec.begin(), vec.end(), file);
+                if(pos != vec.end()) {
+                    vec.erase(pos);
+                }
             }
+            return;
         }
-
-        break;
     }
-
+    std::cout << "\033[1;31m没有找到这个文件\033[0m" << std::endl;
     
 }
 

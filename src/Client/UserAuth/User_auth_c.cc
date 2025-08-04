@@ -132,7 +132,7 @@ bool UserAuth_c::register_Ver(){
         std::cerr << "Parse error" << std::endl;
     }
     if(!auth_recv.res().decide()){
-        std::cout << "Register failedssss" << std::endl;
+        std::cout << "\033[1;31m此用户已经被注册过了!\033[0m" << std::endl;
         _user = "";
         return false;;
     }

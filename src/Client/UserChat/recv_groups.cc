@@ -157,6 +157,7 @@ void UserChat::print_del_res(const chat::Chat& chat_msg) {
     std::string name = g_name + "   ---" + u_name;
     std::cout << "\033[34m您已被 " << user << "踢出群聊 " << name << "\033[0m" << std::endl;
     user_groups.erase(name);
+    group_exixt = false;
 }
 
 void UserChat::print_disband_group(const chat::Chat& chat_msg) {
@@ -165,6 +166,7 @@ void UserChat::print_disband_group(const chat::Chat& chat_msg) {
      std::string name = g_name + "   ---" + u_name;
     std::cout << "\033[34m群聊 " << name << " 已被解散\033[0m" << std::endl;
     user_groups.erase(name);
+    group_exixt = false;
 }
 
 void UserChat::print_add_manager(const chat::Chat& chat_msg) {
@@ -185,6 +187,7 @@ void UserChat::print_add_manager_res(const chat::Chat& chat_msg) {
     std::string user = chat_msg.add_manager().username();
     std::string name = g_name + "   ---" + u_name;
     std::cout << "\033[34m您已被设为群聊 " << name << " 的管理员!\033[0m" << std::endl;
+    group_exixt = false;
 }
 
 void UserChat::print_del_manager(const chat::Chat& chat_msg) {
@@ -205,6 +208,7 @@ void UserChat::print_del_manager_res(const chat::Chat& chat_msg) {
     std::string user = chat_msg.del_manager().username();
     std::string name = g_name + "   ---" + u_name;
     std::cout << "\033[34m您已被移除群聊 " << name << " 的管理员身份!\033[0m" << std::endl;
+    group_exixt = false;
 }
 
 void UserChat::print_send_group_file(const chat::Chat& chat_msg) {

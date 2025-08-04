@@ -476,9 +476,6 @@ void UserChat::recive_msg(const std::string& to_name) {
             case chat::Actions::LOGINLIST:
                 save_friends(chat_msg);
                 break;
-            case chat::Actions::FRIENDMSG:
-                print_msg(chat_msg);
-                break;
             case chat::Actions::ADDFDREQ:
                 recv_add_friend(chat_msg);
                 break;

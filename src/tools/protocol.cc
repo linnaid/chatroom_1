@@ -20,7 +20,7 @@ bool Protocol::unpack(std::string& buffer, chat::Chat& chat_msg){
         // std::cout << len << std::endl;
         // std::cout << buffer.size() << std::endl;
         if(buffer.size() < len + 4) {
-            std::cout << "\033[31m长度不够！\033[0m" << std::endl;
+            // std::cout << "\033[31m长度不够！\033[0m" << std::endl;
             return false;
         }
         // std::cout << buffer.size() << " & " << buffer.c_str() << std::endl;

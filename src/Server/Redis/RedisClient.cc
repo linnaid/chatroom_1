@@ -623,8 +623,8 @@ bool RedisClient::delUserFile(const std::string& uuid,
     try {
         std::string key = RedisKey::UserKey("File") + ":" + uuid + ":" + username + ":" + from_name;
         // std::cout << key << std::endl;
-        auto value = _redis.lpop(key);
-        return value.has_value();
+        auto value = _redis.lrem(key, 1, file_name);
+        return value;
     } catch(const sw::redis::Error &e) {
         std::cerr << "Redis 删除错误: " << e.what() << std::endl;
         return false;

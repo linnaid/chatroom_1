@@ -256,7 +256,7 @@ void Connection::recv_file_group(const chat::Chat& chat) {
     std::string uuid = _user_msg.getGroup_uuid(u_name, g_name);
     std::string file = chat.recv_file_group().file_name();
     std::string username = fds[_fd];
-    _redis.delUserFile(uuid, username, name, file);
+    _redis.delUserFile(uuid, name, username, file);
 }
 
 // 发送文件

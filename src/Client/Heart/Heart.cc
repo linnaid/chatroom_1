@@ -40,6 +40,7 @@ void Heart::send_heart() {
     chat_heart.SerializeToString(&msg);
     msg = Protocol::pack(msg);
     while(running) {
+        std::cout << "正在跳动" << std::endl;
         ssize_t a = send(_sockfd, msg.c_str(), msg.size(), 0);
         if(a < 0) {
             std::cerr << "Send Error in User_chat:" << std::strerror(errno) << std::endl;           
