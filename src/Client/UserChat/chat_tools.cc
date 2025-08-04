@@ -45,4 +45,16 @@ bool UserChat::Send(const std::string& buf) {
     return true;
 }
 
+std::string UserChat::trim(const std::string& str) {
+    ssize_t start = str.find_first_not_of(" \t");
+    ssize_t end = str.find_last_not_of(" \t");
+    return (start == std::string::npos) ? "" : str.substr(start, end - start + 1);
+}
+
+std::pair<std::string, std::string> UserChat::split_dash(const std::string& str) {
+    auto pos = str.find("---");
+    if(pos == std::string::npos) return {trim(str), ""};
+
+    return {trim(str.substr(0, pos)), trim(str.substr(pos + 3))};
+}
 

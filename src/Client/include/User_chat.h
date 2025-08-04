@@ -11,6 +11,7 @@
 enum class Select {
     FRIEND = 1,
     GROUP = 2,
+    DELACCOUNT = 3,
 
     QUIT = 0
 };
@@ -76,6 +77,8 @@ private:
     void runSend();
 
     void runRecive();
+
+    void del_account();
 
     void runFriend();
 
@@ -201,6 +204,10 @@ private:
     void print_send_group_file(const chat::Chat& chat_msg);
     void print_look_group_file(const chat::Chat& chat_msg);
 
+
+    // 以下是一些对字符串的处理函数
+    std::string trim(const std::string& str);
+    std::pair<std::string, std::string> split_dash(const std::string& str);
 
 
 

@@ -204,6 +204,11 @@ void UserChat::add_group_member() {
     std::cout << "\033[36m请输入您好友的名字:\033[0m" << std::endl;
     while(1) {
         getline(std::cin, username);
+        if(username == _username) {
+            std::cout << "\033[36m你已经是群成员了---\033[0m" << std::endl;
+            std::cout << "\033[36m请重新输入或退出<quit>...\033[0m" << std::endl;
+            continue;
+        }
         if(username == "quit") {
             std::cout << "\033[36m正在为您退出---\033[0m" << std::endl;
             return;
@@ -451,7 +456,8 @@ void UserChat::recv_group_msg() {
             // std::cout<< "hhh" << std::endl;
             if(!Protocol::unpack(msg, chat_msg)) break;
 
-            switch (chat_msg.action()) {
+        switch (chat_msg.action())
+            {
             case chat::Actions::LOGINLIST:
                 save_friends(chat_msg);
                 break;
@@ -541,6 +547,27 @@ void UserChat::recv_group_msg() {
                 break;
             case chat::Group::DELMEMBERRES:
                 print_del_res(chat_msg);
+                break;
+            case chat::Group::DISBANDGROUP:
+                print_disband_group(chat_msg);
+                break;
+            case chat::Group::ADDMANAGER:
+                print_add_manager(chat_msg);
+                break;
+            case chat::Group::ADDMANAGERRES:
+                print_add_manager_res(chat_msg);
+                break;
+            case chat::Group::DELMANAGER:
+                print_del_manager(chat_msg);
+                break;
+            case chat::Group::DELMANAGERRES:
+                print_del_manager_res(chat_msg);
+                break;
+            case chat::Group::SENDFILEGROUP:
+                print_send_group_file(chat_msg);
+                break;
+            case chat::Group::LOOKFILEGROUP:
+                print_look_group_file(chat_msg);
                 break;
             case chat::Group::GROUP_QUIT:
                 break;

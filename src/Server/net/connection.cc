@@ -45,6 +45,9 @@ bool Connection::readMessage()
         case chat::Actions::LOGIN:
             adduser(chat.log().username());
             break;
+        case chat::Actions::DELACCOUNT:
+            del_account(chat);
+            break;
         case chat::Actions::ADDFDREQ:
             send_addFriend(chat);
             break;
@@ -131,7 +134,7 @@ bool Connection::readMessage()
             del_member(chat);
             break;
         case chat::Group::DISBANDGROUP:
-            disband_froup(chat);
+            disband_froup(chat.disband_group().g_name(), chat.disband_group().u_name());
             break;
         case chat::Group::ADDMANAGER:
             add_manager(chat);
@@ -156,6 +159,63 @@ bool Connection::readMessage()
     }
     return true;
 }
+
+// 注销账号
+void Connection::del_account(const chat::Chat& chat) {
+    std::unordered_map<std::string, std::string> groups;
+    std::vector<std::string> friends;
+    std::string username = fds[_fd];
+    for(const auto& [g_name, u_name] : chat.del_account().group_name()) {
+        std::string uuid = _user_msg.getGroup_uuid(u_name, g_name);
+        const std::string status = _redis.getGroupManager(uuid, username);
+        if(status == "群主") {
+            disband_froup(g_name, u_name);
+            
+        } else {
+            std::string ll = username + ":成员";
+            _redis.removeGroupMember(uuid, ll);
+            _redis.removeGroupManager(uuid, username);
+        }
+    }
+    for(const auto& friend_name : chat.del_account().friends()) {
+        std::string time = Protocol::GetNowTime();
+        _user_msg.deleteFriend(username, friend_name);
+
+        std::string pp;
+        if(username > friend_name) {
+            pp = username + friend_name;
+        } else {
+            pp = friend_name + username;
+        }
+        _redis.deleteChatList("Friend", pp);
+    
+        std::string r = username + "\033[31m 已注销，你们不再是好友了！\033[0m";
+        int to_fd = users[friend_name];
+        if(to_fd == 0) {
+            std::unordered_map<std::string, std::string> message;
+            message = {
+                {r, time}
+            };
+            _redis.setResKey("Response", friend_name, message);
+        } else {
+            chat::Chat chat_req;
+            chat_req.set_action(chat::Actions::DELFDREQ);
+            chat::DeleteFriendRequest* del_req = chat_req.mutable_friend_del_req();
+            del_req->set_from_name(username);
+            del_req->set_to_name(friend_name);
+            del_req->set_time(time);
+
+            std::string d;
+            chat_req.SerializeToString(&d);
+            d = Protocol::pack(d);
+            MessageCenter::instance().dispatch(_fd, to_fd, d);
+        }
+    }
+    _redis.deleteHashMembers("Friend", username);
+    _redis.deleteHashKey(username);
+}
+
+
 
 // 以下是关于群聊
 
@@ -214,6 +274,7 @@ void Connection::send_file_group(const chat::Chat& chat) {
     for(const auto& member : members) {
         size_t pos = member.rfind(':');
         std::string a = (pos != std::string::npos) ? member.substr(0, pos) : member;
+        if(a == username) continue;
         _redis.setUserFile(uuid, username, a, file_name);
         int fd = users[a];
         if(fd == 0) {
@@ -247,9 +308,9 @@ void Connection::send_file_group(const chat::Chat& chat) {
 // 删除管理员
 void Connection::del_manager(const chat::Chat& chat) {
     std::string u = fds[_fd];
-    std::string u_name = chat.add_manager().u_name();
-    std::string g_name = chat.add_manager().g_name();
-    std::string username = chat.add_manager().username();
+    std::string u_name = chat.del_manager().u_name();
+    std::string g_name = chat.del_manager().g_name();
+    std::string username = chat.del_manager().username();
     std::string name = g_name + "   ---" + u_name;
     std::string time = Protocol::GetNowTime();
     std::string uuid = _user_msg.getGroup_uuid(u_name, g_name);
@@ -262,6 +323,10 @@ void Connection::del_manager(const chat::Chat& chat) {
     del_manager->set_username(username);
     
     if(_redis.removeGroupManager(uuid, username)) {
+        std::string l = username + ":管理员";
+        std::string ll = username + ":成员";
+        _redis.removeGroupMember(uuid, l);
+        _redis.SetGroupMember(uuid, ll);
         del_manager->set_decide(true);
         int fd = users[username];
         if(fd == 0) {
@@ -355,9 +420,7 @@ void Connection::add_manager(const chat::Chat& chat) {
 }
 
 // 解散群聊
-void Connection::disband_froup(const chat::Chat& chat) {
-    std::string u_name = chat.disband_group().u_name();
-    std::string g_name = chat.disband_group().g_name();
+void Connection::disband_froup(const std::string& g_name, const std::string& u_name) {
     std::string name = g_name + "   ---" + u_name;
     std::string time = Protocol::GetNowTime();
     chat::Chat chat_group;
@@ -726,6 +789,24 @@ void Connection::group_decide(const chat::Chat& chat) {
     std::string a;
 
     if(chat.join_res().decide()) {
+        if(!_redis.userFieldHexists(user, "password")) {
+            a = "\033[1;31m\n用户已注销或不存在\033[0m";
+            decide = false;
+            chat::Chat chat_group;
+            chat_group.set_group(chat::Group::JOINGROUPRESPONSE);
+            chat::JoinGroupResponse* join_res = chat_group.mutable_join_res();
+            join_res->set_u_name(u_name);
+            join_res->set_g_name(g_name);
+            join_res->set_time(time);
+            join_res->set_decide(decide);
+            join_res->set_msg(a);
+            std::string msg;
+            chat_group.SerializeToString(&msg);
+            msg = Protocol::pack(msg);
+
+            MessageCenter::instance().dispatch(_fd, _fd, msg);
+            return;
+        }
         std::string uuid = _user_msg.getGroup_uuid(u_name, g_name);
         std::string n = user + ":" + "成员";
         _redis.SetGroupMember(uuid, n);
@@ -733,7 +814,7 @@ void Connection::group_decide(const chat::Chat& chat) {
         std::unordered_map<std::string, std::string> managers;
         managers = _redis.getGroupManager(uuid);
         for(const auto& [user, statue] : managers) {
-            _redis.delGroupNotify(user, name);
+            _redis.delGroupNotify(user, user);
         }
         a = "\033[33m您被通过了加群申请 ,来自 \033[1;32m" + username + "\033[33m 您现在是 \033[1;32m" + name + " 中的一员了!\033[0m";
         decide = true;
@@ -1275,6 +1356,12 @@ void Connection::send_addFriend(const chat::Chat& chat) {
     std::string from_name = chat.friend_req().from_username();
     std::string to_name = chat.friend_req().to_username();
     std::string time = chat.friend_req().time();
+    if(!_redis.userFieldHexists(to_name, "password")) {
+        std::string l = "\033[31m 用户不存在...\033[0m";
+        std::string msg = Seriafdres(from_name, l, time, false);
+        msg = Protocol::pack(msg);
+        MessageCenter::instance().dispatch(_fd, _fd, msg);
+    }
     message = {
         {from_name, time}
     };
@@ -1290,8 +1377,6 @@ void Connection::send_addFriend(const chat::Chat& chat) {
         return;
     }
 
-    chat::Chat chat_req;
-    chat::UserRequest* req = chat_req.mutable_req();
     _redis.setResKey("Friend", to_name, message);
     
     std::string msg = Seriafdreq(to_name);

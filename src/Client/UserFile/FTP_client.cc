@@ -146,7 +146,7 @@ std::ofstream FTPClient::File_creat(char* file_path)
     // 获取目录
     std::string path_ = get_directory_path();
     std::filesystem::path f_path = std::filesystem::path(path_) / _file_name;
-    std::ofstream open_file(f_path, std::ios::binary | std::ios::app);
+    std::ofstream open_file(f_path, std::ios::binary);
     if(!open_file)
     {
         perror("OPEN_file Error");
@@ -164,10 +164,10 @@ void FTPClient::Retr()
     }
     std::cout << "\033[34m正在接收文件...\033[0m" <<std::endl;
     std::cout << _file_name << std::endl;
+    char re[MAX_NUM];
     while(1)
     {
-        char re[MAX_NUM];
-        ssize_t k = recv(link_sock, re, sizeof(re) - 1, 0);
+        ssize_t k = recv(link_sock, re, sizeof(re), 0);
         if(k < 0)
         {
             perror("RETR_RECIVE ERROR");

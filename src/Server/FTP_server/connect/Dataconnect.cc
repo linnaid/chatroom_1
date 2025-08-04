@@ -89,7 +89,8 @@ void Dataconnect::send_file(const std::string& path,
         file.read(test, sizeof(test));
         // std::cout << test << std::endl;
         std::streamsize size = file.gcount();
-        if(size > 0)
+        ssize_t total_sent = 0;
+        while(total_sent < size)
         {
             // std::cout << "len error" << std::endl;
             ssize_t len = send(data_fd, test, size, 0);
@@ -97,9 +98,10 @@ void Dataconnect::send_file(const std::string& path,
             if(len < 0){
                 if(errno == EAGAIN || errno == EWOULDBLOCK)
                 continue;
-                perror("SEND ERROR");
+                // perror("SEND ERROR");
                 break;
             }
+            total_sent += len;
         }
     }
     // file.close();

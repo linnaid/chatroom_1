@@ -224,7 +224,7 @@ void UserChat::runSend() {
         if(!_run) break;
         friend_Page::Friend();
         std::cin >> choice;
-        if(std::cin.fail() || choice > 2 || choice < 0) {
+        if(std::cin.fail() || choice > 3 || choice < 0) {
             Clear::clearScreen();
             std::cout << "\033[1;31m输入错误,请重新输入:\033[0m" << std::endl;
             std::cin.clear();
@@ -242,11 +242,36 @@ void UserChat::runSend() {
         case Select::GROUP:
             runGroup();
             break;
+        case Select::DELACCOUNT:
+            del_account();
+            break;
         case Select::QUIT:
             _run = false;
             break;    
         }
     }
+}
+
+
+void UserChat::del_account() {
+    chat::Chat chat_group;
+    chat_group.set_action(chat::Actions::DELACCOUNT);
+
+    chat::delAccount* del_account = chat_group.mutable_del_account();
+
+    for(const auto& groupname : user_groups) {
+        auto [first, second] = split_dash(groupname);
+        (*del_account->mutable_group_name())[first] = second;
+    }
+    for(const auto& friend_name : friends) {
+        del_account->add_friends(friend_name);
+    }
+
+    std::string del;
+    chat_group.SerializeToString(&del);
+    Send(del);
+    std::cout << "\033[1;31m您已注销账号,正在强制退出...\033[0m" << std::endl;
+    _run = false;
 }
 
 void UserChat::runGroup() {

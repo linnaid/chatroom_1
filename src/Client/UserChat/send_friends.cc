@@ -469,9 +469,10 @@ void UserChat::recive_msg(const std::string& to_name) {
         chat::Chat chat_msg;
         while(!msg.empty()) {
             // std::cout<< "hhh" << std::endl;
-            if(!Protocol::unpack(msg, chat_msg)) break;
+        if(!Protocol::unpack(msg, chat_msg)) break;
 
-            switch (chat_msg.action()) {
+        switch (chat_msg.action())
+            {
             case chat::Actions::LOGINLIST:
                 save_friends(chat_msg);
                 break;
@@ -564,6 +565,27 @@ void UserChat::recive_msg(const std::string& to_name) {
                 break;
             case chat::Group::DELMEMBERRES:
                 print_del_res(chat_msg);
+                break;
+            case chat::Group::DISBANDGROUP:
+                print_disband_group(chat_msg);
+                break;
+            case chat::Group::ADDMANAGER:
+                print_add_manager(chat_msg);
+                break;
+            case chat::Group::ADDMANAGERRES:
+                print_add_manager_res(chat_msg);
+                break;
+            case chat::Group::DELMANAGER:
+                print_del_manager(chat_msg);
+                break;
+            case chat::Group::DELMANAGERRES:
+                print_del_manager_res(chat_msg);
+                break;
+            case chat::Group::SENDFILEGROUP:
+                print_send_group_file(chat_msg);
+                break;
+            case chat::Group::LOOKFILEGROUP:
+                print_look_group_file(chat_msg);
                 break;
             case chat::Group::GROUP_QUIT:
                 break;

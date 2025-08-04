@@ -42,6 +42,9 @@ public:
 
     bool deleteHashMember(const std::string& name, const std::string& set_name, const std::string& key);
 
+    bool deleteHashMembers(const std::string& username, 
+                                    const std::string& set_name);
+
     bool setChatList(const std::string& username, const std::string& set_name, const std::string& field);
 
     bool deleteChatList(const std::string& username, const std::string& set_name);

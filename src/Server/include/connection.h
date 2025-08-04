@@ -61,12 +61,16 @@ private:
     void leave_group(const chat::Chat& chat);
     void add_member(const chat::Chat& chat);
     void del_member(const chat::Chat& chat);
-    void disband_froup(const chat::Chat& chat);
+    void disband_froup(const std::string& g_name, const std::string& u_name);
     void add_manager(const chat::Chat& chat);
     void del_manager(const chat::Chat& chat);
     void send_file_group(const chat::Chat& chat);
     void recv_file_group(const chat::Chat& chat);
     void send_file_req_group(const chat::Chat& chat);
+
+    // 以下是注销账号的相关函数
+    void del_account(const chat::Chat& chat);
+    
 
 
     int _fd;

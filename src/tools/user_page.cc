@@ -11,6 +11,7 @@ void friend_Page::Friend() {
     std::cout << "│" << "                              " << purple<< "│\n";
     std::cout << "│" << brightMagenta << "     1. 好友                  " << purple<< "│\n";
     std::cout << "│" << brightMagenta << "     2. 群聊                  " << purple<< "│\n";
+    std::cout << "│" << brightMagenta << "     3. 注销账号              " << purple<< "│\n";
     std::cout << "│" << brightMagenta << "     0. 退出登陆              " << purple<< "│\n";
     std::cout << "│" << "                              " << purple<< "│\n";
     std::cout << "└──────────────────────────────┘" << reset << "\n";

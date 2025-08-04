@@ -48,7 +48,7 @@ std::unordered_map<std::string, std::string> RedisClient::getHash(
     return result;
 }
 
-
+// 设置验证码
 bool RedisClient::setKeyExpire(const std::string& username, 
                                const std::string& value, 
                                int expire_time){
@@ -61,6 +61,7 @@ bool RedisClient::setKeyExpire(const std::string& username,
     }
 }
 
+// 删除元素
 bool RedisClient::deleteHashKey(const std::string& username) {
     try {
         std::string key = RedisKey::UserKey(username);
@@ -71,6 +72,19 @@ bool RedisClient::deleteHashKey(const std::string& username) {
     }
 }
 
+// 删除所有好友申请
+bool RedisClient::deleteHashMembers(const std::string& username, 
+                                    const std::string& set_name) {
+    try {
+        std::string key = RedisKey::RequestKey(username) + ":" + set_name;
+        return _redis.del(key) == 1;
+    } catch(const sw::redis::Error &e) {
+        std::cerr << "Redis 删除错误: " << e.what() << std::endl;
+        return false;
+    }
+}
+
+// 删除好友申请
 bool RedisClient::deleteHashMember(const std::string& name,
                              const std::string& set_name, 
                              const std::string& key) {
@@ -83,6 +97,7 @@ bool RedisClient::deleteHashMember(const std::string& name,
     }
 }
 
+// 删除同志消息
 bool RedisClient::deleteHash(const std::string& username, 
                             const std::string& set_name) {
     try {
@@ -243,6 +258,7 @@ bool RedisClient::delUserFile(const std::string& username,
     }
 }
 
+// 时别验证码
 std::optional<std::string> RedisClient::userFieldExists(const std::string& username){
     try {
         auto buf =  _redis.get(username);
@@ -254,6 +270,7 @@ std::optional<std::string> RedisClient::userFieldExists(const std::string& usern
     }
 }
 
+// 判断字段是否存在
 bool RedisClient::userFieldHexists(const std::string& username, 
                                    const std::string& field){
     try {
@@ -293,6 +310,7 @@ bool RedisClient::setUserGroups(const std::string& username,
     }
 }
 
+// 移除好友
 bool RedisClient::removeUserGroups(const std::string& username, 
                                    const std::string& set_name, 
                                    const std::string& element) {
@@ -327,6 +345,7 @@ bool RedisClient::removeUserToOnlineLists(const std::string& username){
     }
 }
 
+// 获取好友
 std::vector<std::string> RedisClient::getFields(const std::string& from_name) {
     try {
         std::string key = RedisKey::FriendKey(from_name);
@@ -496,7 +515,7 @@ std::string RedisClient::getGroupManager(const std::string& uuid,
         auto val = _redis.hget(key, username);
         return *val;
     } catch (const sw::redis::Error &e) {
-        std::cerr << "Redis 删除错误: " << e.what() << std::endl;
+        std::cerr << "Redis 错误: " << e.what() << std::endl;
         return "";
     }
 }
@@ -570,10 +589,10 @@ std::unordered_map<std::string, std::string> RedisClient::getGroupNotify (const 
 
 // 删除申请消息
 bool RedisClient::delGroupNotify(const std::string& username, 
-                                 const std::string& g_name) {
+                                 const std::string& name) {
     try {
         std::string key = RedisKey::ManagerKey(username);
-        auto ret = _redis.hdel(key, g_name);
+        auto ret = _redis.hdel(key, name);
         return ret;
     } catch(const sw::redis::Error &e) {
         std::cerr << "Redis Error: " << e.what() << std::endl;

@@ -16,7 +16,7 @@ void UserManager::addUser(int fd, const std::string& username) {
     fds[fd] = username;
 }
 
-// 登出用户
+// 登出/注销 用户
 void UserManager::removeUser(int cli) {
     std::lock_guard<std::mutex> lock(_mtx);
     std::string username = fds[cli];

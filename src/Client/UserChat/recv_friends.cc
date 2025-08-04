@@ -57,7 +57,7 @@ void UserChat::save_friends(const chat::Chat& chat_msg) {
     }
     auto proto_groups = chat_msg.group_list().groups();
     for(const auto& group : proto_groups) {
-        std::cout << group << "sss" << std::endl;
+        // std::cout << group << "sss" << std::endl;
         user_groups.insert(group);
     }
 }

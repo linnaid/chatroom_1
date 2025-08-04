@@ -36,8 +36,8 @@ void Worker::make_queue(int cli){
         std::cerr << "epoll_ctl_add_error in Worker.cc" << std::strerror(errno) << std::endl;
     }
 
-    std::cout << "\033[1;33m" << _id << "id\033[0m" << std::endl;
-    std::cout << "\033[1;33m" << cli << "fd\033[0m" << std::endl;
+    // std::cout << "\033[1;33m" << _id << "id\033[0m" << std::endl;
+    // std::cout << "\033[1;33m" << cli << "fd\033[0m" << std::endl;
     cli_fds.push_back(cli);
 }
 
@@ -70,8 +70,8 @@ void Worker::eventloop() {
                 remove_fd(fd);
                 continue;
             }
-            std::cout << fd << "fd" << std::endl;
-            std::cout << _id << "id" << std::endl;
+            // std::cout << fd << "fd" << std::endl;
+            // std::cout << _id << "id" << std::endl;
             auto it = conn.find(fd);
             if(it == conn.end()) {
                 std::cerr << "Invalid fd or nullptr connection: " << fd << std::endl;
