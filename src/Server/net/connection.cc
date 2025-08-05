@@ -90,6 +90,9 @@ bool Connection::readMessage()
         case chat::Actions::LOOKFILE:
             send_file_req(chat);
             break;
+        case chat::Actions::ONLINEMSG:
+            send_online_msg(chat);
+            break;
         case chat::Actions::ACTION_QUIT:
             break;
         default:
@@ -123,6 +126,9 @@ bool Connection::readMessage()
             break;
         case chat::Group::CHATGROUPLIST:
             group_chat_list(chat);
+            break;
+        case chat::Group::ONLINECHATMSG:
+            group_online_chat_list(chat);
             break;
         case chat::Group::LEAVEGROUP:
             leave_group(chat);
@@ -216,7 +222,6 @@ void Connection::del_account(const chat::Chat& chat) {
 }
 
 
-
 // 以下是关于群聊
 
 // 列出文件目录
@@ -303,7 +308,6 @@ void Connection::send_file_group(const chat::Chat& chat) {
     }
 
 }
-
 
 // 删除管理员
 void Connection::del_manager(const chat::Chat& chat) {
@@ -432,6 +436,7 @@ void Connection::disband_froup(const std::string& g_name, const std::string& u_n
     for(const auto& member : members) {
         size_t pos = member.rfind(':');
         std::string mem = (pos != std::string::npos) ? member.substr(0, pos) : member;
+        _redis.UserRemoveGroups(mem, g_name, u_name);
         int fd = users[mem];
         if(fd == 0) {
             std::unordered_map<std::string, std::string> msg;
@@ -452,11 +457,11 @@ void Connection::disband_froup(const std::string& g_name, const std::string& u_n
             n = Protocol::pack(n);
             MessageCenter::instance().dispatch(_fd, fd, n);
         }
-
     }
+    _redis.delGroup(uuid, u_name, g_name);
+    _redis.UserRemoveGroups(u_name, g_name, u_name);
     _redis.delGroupManager(uuid);
     _redis.delGroupMember(uuid);
-
 }
 
 // 踢人
@@ -662,6 +667,27 @@ void Connection::group_chat_list(const chat::Chat& chat) {
 
     MessageCenter::instance().dispatch(_fd, _fd, msg);
 } 
+
+void Connection::group_online_chat_list(const chat::Chat& chat) {
+    std::string u_name = chat.chat_list().u_name();
+    std::string g_name = chat.chat_list().g_name();
+    std::string uuid = _user_msg.getGroup_uuid(u_name, g_name);
+    std::string username = fds[_fd];
+    chat::Chat chat_group;
+    chat_group.set_group(chat::Group::ONLINECHATMSG);
+    chat::GroupChatList* chat_list = chat_group.mutable_chat_list();
+
+    std::vector<std::string> messages = _redis.getChatOnlineList("group", uuid);
+    for(const auto& message : messages) {
+        // std::cout << message << std::endl;
+        chat_list->add_msg(message); 
+    }
+    std::string msg;
+    chat_group.SerializeToString(&msg);
+    msg = Protocol::pack(msg);
+
+    MessageCenter::instance().dispatch(_fd, _fd, msg);
+}
 
 // 群聊
 void Connection::group_chat(const chat::Chat& chat) {
@@ -1116,6 +1142,7 @@ void Connection::block(const chat::Chat& chat) {
     MessageCenter::instance().dispatch(_fd, fd, msg);
 }
 
+// 获取历史消息
 void Connection::send_offline_msg(const chat::Chat& chat) {
     // std::lock_guard<std::mutex> lock(_mtx);
     std::string name = chat.off_msg().name();
@@ -1132,6 +1159,31 @@ void Connection::send_offline_msg(const chat::Chat& chat) {
     chat_off.set_action(chat::Actions::OFFLINEMSG);
     chat::OfflineMSG* off_msg = chat_off.mutable_off_msg();
     for(const auto& it : off_lines) {
+        off_msg->add_msg(it);
+    }
+    std::string str;
+    chat_off.SerializeToString(&str);
+    str = Protocol::pack(str);
+    
+    MessageCenter::instance().dispatch(_fd, _fd, str);
+}
+
+void Connection::send_online_msg(const chat::Chat& chat) {
+    std::string name = chat.off_msg().name();
+    std::string username = chat.off_msg().username();
+    std::string user;
+    if(name > username) {
+        user = name +":" + username;
+    } else {
+        user = username +":" + name;
+    }
+    std::vector<std::string> off_lines;
+    off_lines = _redis.getChatOnlineList("Friend", user);
+    chat::Chat chat_off;
+    chat_off.set_action(chat::Actions::ONLINEMSG);
+    chat::OfflineMSG* off_msg = chat_off.mutable_off_msg();
+    for(const auto& it : off_lines) {
+        // std::cout << it << std::endl;
         off_msg->add_msg(it);
     }
     std::string str;

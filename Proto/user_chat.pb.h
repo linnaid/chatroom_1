@@ -253,6 +253,7 @@ enum Actions : int {
   DELFDRES = 11,
   RESPONSE = 12,
   OFFLINEMSG = 13,
+  ONLINEMSG = 23,
   LOGINLIST = 14,
   BLOCKFRIEND = 16,
   UNBLOCKFRIEND = 17,
@@ -265,7 +266,7 @@ enum Actions : int {
 };
 bool Actions_IsValid(int value);
 constexpr Actions Actions_MIN = ACTION_QUIT;
-constexpr Actions Actions_MAX = DELACCOUNT;
+constexpr Actions Actions_MAX = ONLINEMSG;
 constexpr int Actions_ARRAYSIZE = Actions_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Actions_descriptor();
@@ -293,6 +294,7 @@ enum Group : int {
   GROUPMEMBERS = 7,
   GROUPMSG = 8,
   CHATGROUPLIST = 9,
+  ONLINECHATMSG = 23,
   LEAVEGROUP = 10,
   ADDMEMBER = 11,
   DELMEMBER = 12,
@@ -311,7 +313,7 @@ enum Group : int {
 };
 bool Group_IsValid(int value);
 constexpr Group Group_MIN = GROUP_QUIT;
-constexpr Group Group_MAX = LOOKFILEGROUP;
+constexpr Group Group_MAX = ONLINECHATMSG;
 constexpr int Group_ARRAYSIZE = Group_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Group_descriptor();

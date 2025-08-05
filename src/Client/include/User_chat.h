@@ -127,6 +127,7 @@ private:
     void print_msg(const chat::Chat& chat_msg);
 
     void print_offline_msg(const chat::Chat& chat_msg);
+    void print_online_msg(const chat::Chat& chat_msg);
 
     void print_cancel();
 
@@ -191,6 +192,7 @@ private:
     void print_group_members(const chat::Chat& chat_msg);
     void print_group_msg(const chat::Chat& chat_msg);
     void print_chat_group_list(const chat::Chat& chat_msg);
+    void print_online_group_msg(const chat::Chat& chat_msg);
     void print_leave_group(const chat::Chat& chat_msg);
     void print_add_member(const chat::Chat& chat_msg);
     void print_add_res(const chat::Chat& chat_msg);

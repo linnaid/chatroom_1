@@ -238,3 +238,13 @@ void UserChat::print_look_group_file(const chat::Chat& chat_msg) {
     std::cout << "\033[1;34m若不处理,请输入 13 进行安全退出;\033[0m" << std::endl;
 }
 
+void UserChat::print_online_group_msg(const chat::Chat& chat_msg) {
+    std::cout << "on" << std::endl;
+    const auto& messages = chat_msg.chat_list().msg();
+    for(const auto& message : messages) {
+        std::cout << message << std::endl;
+    } 
+    if(!messages.empty()) {
+        std::cout << "\033[1;34m=======以上是历史消息=======\033[0m" << std::endl;
+    }
+}

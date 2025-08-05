@@ -127,7 +127,9 @@ bool RedisClient::setChatList(const std::string& username,
                               const std::string& field){
     try {
         std::string key = RedisKey::ChatKey(username) + ":" + set_name;
-        return _redis.rpush(key, field);
+        _redis.rpush(key, field);
+        _redis.ltrim(key, -100, -1);
+        return true;
     } catch(const sw::redis::Error &e) {
         std::cerr << "Redis Error: " << e.what() << std::endl;
         return false;
@@ -140,7 +142,21 @@ std::vector<std::string> RedisClient::getChatList(const std::string& username,
     std::vector<std::string> values;
     try {
         std::string key = RedisKey::ChatKey(username) + ":" + set_name;
-        _redis.lrange(key, 0, -1, std::back_inserter(values));
+        _redis.lrange(key, -100, -1, std::back_inserter(values));
+        return values;
+    } catch(const sw::redis::Error &e) {
+        std::cerr << "Redis Error: " << e.what() << std::endl;
+        return values;
+    }                                               
+}
+
+// 获取历史消息
+std::vector<std::string> RedisClient::getChatOnlineList(const std::string& username, 
+                                                  const std::string& set_name) {
+    std::vector<std::string> values;
+    try {
+        std::string key = RedisKey::ChatKey(username) + ":" + set_name;
+        _redis.lrange(key, -10, -1, std::back_inserter(values));
         return values;
     } catch(const sw::redis::Error &e) {
         std::cerr << "Redis Error: " << e.what() << std::endl;
@@ -372,6 +388,22 @@ bool RedisClient::addGroup(const std::string& uuid,
         _redis.set(index_key, uuid);
 
         return true;
+    } catch(const sw::redis::Error &e){
+        std::cerr << "Redis Error: " << e.what() << std::endl;
+        return false;
+    }
+}
+
+// 解散群聊
+bool RedisClient::delGroup(const std::string& uuid, 
+    const std::string& username, 
+    const std::string& g_name) {
+    try {
+        std::string key = RedisKey::GroupKey(uuid);
+        auto ret = _redis.del(key);
+        std::string index_key = RedisKey::GroupOwner(username) + ":" + g_name;
+        _redis.del(index_key);
+        return ret;
     } catch(const sw::redis::Error &e){
         std::cerr << "Redis Error: " << e.what() << std::endl;
         return false;

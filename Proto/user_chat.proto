@@ -18,6 +18,7 @@ enum Actions {
     DELFDRES = 11;
     RESPONSE = 12;
     OFFLINEMSG = 13;
+    ONLINEMSG = 23;
     // 在刚开始就更新好友；
     LOGINLIST = 14;
     // 屏蔽好友
@@ -45,6 +46,7 @@ enum Group {
     GROUPMEMBERS = 7;
     GROUPMSG = 8;
     CHATGROUPLIST = 9;
+    ONLINECHATMSG = 23;
     LEAVEGROUP = 10;
     ADDMEMBER = 11;
     DELMEMBER = 12;

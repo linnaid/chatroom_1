@@ -191,4 +191,12 @@ void UserChat::print_look_file(const chat::Chat& chat_msg) {
     std::cout << "\033[1;34m若不处理,请输入 9 进行安全退出;\033[0m" << std::endl;
 }
 
-
+void UserChat::print_online_msg(const chat::Chat& chat_msg) {
+    // std::cout << "online" << std::endl;
+    for(int i = 0; i < chat_msg.off_msg().msg_size(); i++) {
+        std::cout << chat_msg.off_msg().msg(i) << std::endl;
+    }
+    if(chat_msg.off_msg().msg_size() != 0) {
+        std::cout << "\033[1;34m=======以上是历史消息=======\033[0m" << std::endl;
+    }
+}

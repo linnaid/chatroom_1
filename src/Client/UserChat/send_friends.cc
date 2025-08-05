@@ -13,6 +13,16 @@ void UserChat::chat_friend() {
         for(const auto& name : friends)
         {
             if(name == to_name) {
+                chat::Chat chat_off;
+                chat_off.set_action(chat::Actions::ONLINEMSG);
+                chat::OfflineMSG* off_msg = chat_off.mutable_off_msg();
+                off_msg->set_username(_username);
+                off_msg->set_name(to_name);
+                std::string msg;
+                chat_off.SerializeToString(&msg);
+
+                Send(msg);
+                std::this_thread::sleep_for(std::chrono::milliseconds(300));
                 _running_recv = false;
                 run = false;
                 f = true;
@@ -23,6 +33,7 @@ void UserChat::chat_friend() {
             std::cout << "\033[31m他(她)好像不是您的好友\n请重新输入或退出(quit)\033[0m" << std::endl;
         }
     }
+    
     std::cout << "\033[36m您已进入聊天, 输入<quit>即可退出...\033[0m" << std::endl;
 
     t1 = std::thread(&UserChat::send_msg, this, to_name);
@@ -395,6 +406,7 @@ void UserChat::recive_file() {
 
 // chat1
 void UserChat::send_msg(const std::string& to_name) {
+
     while(true) {
         std::string msg;
         if(friends.find(to_name) == friends.end()) {
@@ -514,6 +526,9 @@ void UserChat::recive_msg(const std::string& to_name) {
                 break;
             case chat::Actions::LOOKFILE:
                 print_look_file(chat_msg);
+                break;
+            case chat::Actions::ONLINEMSG:
+                print_online_msg(chat_msg);
                 break;
             case chat::Actions::ACTION_QUIT:
                 break;

@@ -150,10 +150,21 @@ void UserChat::send_group_member() {
 }
 
 void UserChat::chat_group() {
-    std::cout << "\033[36m您已进入聊天, 输入<quit>即可退出...\033[0m" << std::endl;
+    chat::Chat chat_group;
+    chat_group.set_group(chat::Group::ONLINECHATMSG);
+    chat::GroupChatList* chat_list = chat_group.mutable_chat_list();
+    chat_list->set_u_name(user_name);
+    chat_list->set_g_name(group_name);
+    std::string msg;
+    chat_group.SerializeToString(&msg);
 
-    _running_recv = false;
+    Send(msg);
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
+    std::cout << "\033[36m您已进入聊天, 输入<quit>即可退出...\033[0m" << std::endl;
+    
     t1 = std::thread(&UserChat::send_group_msg, this);
+    _running_recv = false;
     t2 = std::thread(&UserChat::recv_group_msg, this);
     joinThread(t1);
     std::cout << "\033[36m您已退出聊天\033[0m" << std::endl;
@@ -571,6 +582,9 @@ void UserChat::recv_group_msg() {
                 break;
             case chat::Group::LOOKFILEGROUP:
                 print_look_group_file(chat_msg);
+                break;
+            case chat::Group::ONLINECHATMSG:
+                print_online_group_msg(chat_msg);
                 break;
             case chat::Group::GROUP_QUIT:
                 break;

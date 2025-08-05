@@ -42,6 +42,7 @@ private:
     void Send_msg(const chat::Chat& chat);
     void Send_delete_friend(const chat::Chat& chat);
     void send_offline_msg(const chat::Chat& chat);
+    void send_online_msg(const chat::Chat& chat);
     void block(const chat::Chat& chat);
     void send_file(const chat::Chat& chat);
     void recv_file(const chat::Chat& chat);
@@ -58,6 +59,7 @@ private:
     void group_members(const chat::Chat& chat);
     void group_chat(const chat::Chat& chat);
     void group_chat_list(const chat::Chat& chat);
+    void group_online_chat_list(const chat::Chat& chat);
     void leave_group(const chat::Chat& chat);
     void add_member(const chat::Chat& chat);
     void del_member(const chat::Chat& chat);

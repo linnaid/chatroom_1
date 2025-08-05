@@ -30,8 +30,6 @@ public:
 
     std::vector<std::string> getFields(const std::string& from_name);
 
-    bool scan_hash(const std::string& username);
-
     bool setResKey(const std::string& username, const std::string& set_name, const std::unordered_map<std::string, std::string>& msg);
 
     bool deleteHash(const std::string& username, const std::string& set_name);
@@ -50,6 +48,8 @@ public:
     bool deleteChatList(const std::string& username, const std::string& set_name);
 
     std::vector<std::string> getChatList(const std::string& username, const std::string& set_name);
+    
+    std::vector<std::string> getChatOnlineList(const std::string& username, const std::string& set_name);
 
     std::unordered_map<std::string, std::string> getHash(const std::string& username, const std::string& set_name);
 
@@ -68,6 +68,8 @@ public:
     // 以下对群聊
     bool addGroup(const std::string& uuid, const std::string& username, const std::string& groupname,
                   std::unordered_map<std::string, std::string>& g_info);
+
+    bool delGroup(const std::string& uuid, const std::string& username, const std::string& g_name);
 
     bool GroupExists(const std::string& username, const std::string& g_name);
 

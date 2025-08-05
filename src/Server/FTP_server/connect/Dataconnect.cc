@@ -93,7 +93,7 @@ void Dataconnect::send_file(const std::string& path,
         while(total_sent < size)
         {
             // std::cout << "len error" << std::endl;
-            ssize_t len = send(data_fd, test, size, 0);
+            ssize_t len = send(data_fd, test + total_sent, size - total_sent, 0);
             // std::cout << "len = " << len << std::endl;
             if(len < 0){
                 if(errno == EAGAIN || errno == EWOULDBLOCK)
@@ -166,7 +166,7 @@ void Dataconnect::Close()
 std::ofstream Dataconnect::file_creat(const std::string& path, const std::string& username, const std::string& to_name)
 {
     (void)path;
-    std::string f_path = "/home/linnaid/ChatRoom/chatroom_1/src/Server/File";
+    std::string f_path = "/home/linnaid/ChatRoom/chatroom_1/SendFile";
     std::string time = getNowTime();
     std::string f = getRandom();
     std::string file_name = time + "_" + username + "_" + f + ".dat";

@@ -123,6 +123,9 @@ void UserChat::runRecive() {
                 case chat::Actions::LOOKFILE:
                     print_look_file(chat_msg);
                     break;
+                case chat::Actions::ONLINEMSG:
+                    print_online_msg(chat_msg);
+                    break;
                 case chat::Actions::ACTION_QUIT:
                     break;
                 default:
@@ -191,6 +194,9 @@ void UserChat::runRecive() {
                     break;
                 case chat::Group::LOOKFILEGROUP:
                     print_look_group_file(chat_msg);
+                    break;
+                case chat::Group::ONLINECHATMSG:
+                    print_online_group_msg(chat_msg);
                     break;
                 case chat::Group::GROUP_QUIT:
                     break;
