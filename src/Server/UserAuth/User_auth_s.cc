@@ -144,10 +144,11 @@ void UserAuth_s::R_check(int cli, const auth::Auth& auth_msg){
 
     if(auth_msg.r_ver().email_msg() == redis_.userFieldExists(buf)){
         std::cout << "Registration Successful." << std::endl;
+        redis_.saveUser(auth_msg.r_ver().username(), user_info);
         ver->set_decide(true);
     } else {
         std::cout << "Registration Failed." << std::endl;
-        redis_.deleteHashKey(auth_msg.r_ver().username());
+        // redis_.deleteHashKey(auth_msg.r_ver().username());
         ver->set_decide(false);
     }
 
@@ -250,7 +251,7 @@ std::string UserAuth_s::generate_Ver(){
 void UserAuth_s::Register_R(int cli, const auth::Auth& auth_msg){
     
     const auth::RegisterRequest& req = auth_msg.req();
-    std::unordered_map<std::string, std::string> user_info = {
+    user_info = {
         {"password", req.password()},
         {"email", req.email()},
         {"phone", req.phone()}
@@ -262,7 +263,8 @@ void UserAuth_s::Register_R(int cli, const auth::Auth& auth_msg){
         a = false;
         msg = "Fail!";
         std::cerr << "User registration failed" << std::endl;
-    }    
+    }
+    redis_.deleteHashKey(req.username());
     std::string buf = Ser_R(a, msg);
     Send(cli, buf);
 

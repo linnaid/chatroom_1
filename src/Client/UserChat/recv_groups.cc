@@ -47,6 +47,8 @@ void UserChat::print_group_notify(const chat::Chat& chat_msg) {
     auto groups = chat_msg.group_notify().response();
     if(groups.empty()) {
         std::cout << "\033[34m还没有任何加群申请...\033[0m" << std::endl;
+        std::cout << "\033[34m已为您安全退出...\033[0m" << std::endl;
+        return;
     }
     chat::Chat chat_group;
     for(const auto& [user, value] : groups) {

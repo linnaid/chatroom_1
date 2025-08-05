@@ -39,6 +39,7 @@ private:
     // std::queue<int> _cli;
     std::unordered_map<int, clientHandle> handle_c; 
     RedisClient redis_;
+    std::unordered_map<std::string, std::string> user_info;
     int listen_sockfd;
     int _epoll;
     bool flag;
