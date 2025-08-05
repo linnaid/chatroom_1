@@ -810,6 +810,7 @@ void Connection::group_decide(const chat::Chat& chat) {
     std::string username = fds[_fd];
     std::string user = chat.join_res().username();
     std::string name = g_name + "   ---" + u_name;
+    std::string uuid = _user_msg.getGroup_uuid(u_name, g_name);
     std::string time = Protocol::GetNowTime();
     bool decide;
     std::string a;
@@ -833,22 +834,22 @@ void Connection::group_decide(const chat::Chat& chat) {
             MessageCenter::instance().dispatch(_fd, _fd, msg);
             return;
         }
-        std::string uuid = _user_msg.getGroup_uuid(u_name, g_name);
+        
         std::string n = user + ":" + "成员";
         _redis.SetGroupMember(uuid, n);
         _redis.UserSetGroups(user, u_name, g_name);
-        std::unordered_map<std::string, std::string> managers;
-        managers = _redis.getGroupManager(uuid);
-        for(const auto& [user, statue] : managers) {
-            _redis.delGroupNotify(user, user);
-        }
+        
         a = "\033[33m您被通过了加群申请 ,来自 \033[1;32m" + username + "\033[33m 您现在是 \033[1;32m" + name + " 中的一员了!\033[0m";
         decide = true;
     } else {
         a = "\033[31m您被拒绝了加群申请 ,来自 \033[1;32m" + username + "\033[33m 群聊: \033[1;32m" + name  + "\033[0m";
         decide = false;
     }
-    
+    std::unordered_map<std::string, std::string> managers;
+    managers = _redis.getGroupManager(uuid);
+    for(const auto& [user_, statue] : managers) {
+        _redis.delGroupNotify(user_, user);
+    }
     if(!_redis.GroupExists(u_name, g_name)) {
         a = "\033[1;31m\n群聊不存在了\033[0m";
         decide = false;
