@@ -287,6 +287,7 @@ void UserChat::runGroup() {
         std::cin >> choice;
         if(std::cin.fail() || choice > 6 || choice < 0) {
             Clear::clearScreen();
+            if(choice == 13) continue;
             std::cout << "\033[1;31m输入错误,请重新输入:\033[0m" << std::endl;
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
