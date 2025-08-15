@@ -78,11 +78,10 @@ void Worker::eventloop() {
                 remove_fd(fd);
                 continue;
             }
+             // 处理到来的客户端请求~
             if(!conn[fd]->readMessage()) {
                 remove_fd(fd);
             }
-
-            // 处理到来的客户端请求~
         }
     }
 }

@@ -38,7 +38,7 @@ void Master::init()
         std::cerr << "Bind error in Master" << std::endl;
     }
 
-    if (listen(listen_sockfd, NUM) == -1) {
+    if (listen(listen_sockfd, SOMAXCONN) == -1) {
         std::cerr << "Bind error in Master" << std::endl;
     }
 
@@ -57,7 +57,7 @@ void Master::run()
     epoll_master = epoll_create1(0);
     struct epoll_event ev, events[NUM];
     ev.data.fd = listen_sockfd;
-    ev.events = EPOLLIN;
+    ev.events = EPOLLIN | EPOLLET;
     if (epoll_ctl(epoll_master, EPOLL_CTL_ADD, listen_sockfd, &ev) == -1)
     {
         std::cerr << "epoll_ctl failed: " << std::strerror(errno) << std::endl;

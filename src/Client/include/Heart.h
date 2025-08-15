@@ -1,10 +1,12 @@
 #pragma once
 
+#include <condition_variable>
 #include "include.h"
 #include "user_chat.pb.h"
 #include "protocol.h"
 
 extern std::atomic<bool> running;
+extern std::condition_variable _notify;
 
 class Heart {
 public:
@@ -18,4 +20,5 @@ private:
     int _port;
     std::string _ip;
     sockaddr_in _fd;
+    std::mutex _mtx;
 };

@@ -39,6 +39,7 @@ bool Connection::readMessage()
         chat::Chat chat;
         if(!Protocol::unpack(_buffer, chat)) break;
         std::cout << chat.action() << std::endl;
+        checkHeart("ping");
         switch (chat.action())
         {
 
@@ -956,7 +957,7 @@ void Connection::join_group(const chat::Chat& chat) {
         chat_group.SerializeToString(&group);
         group = Protocol::pack(group);
         std::unordered_map<std::string, std::string> g_info;
-        
+        // 加群申请序列化后存入Redis
         g_info = {
             {username, group}
         };
@@ -1555,6 +1556,9 @@ void Connection::sendMessage(int from_fd, const std::string &msg)
 bool Connection::checkHeart(const std::string& heart)
 {
     // std::lock_guard<std::mutex> lock(t_mtx);
+    if(heart_time == 0) {
+        heart_time = getNowTime();
+    }
     if(heart != "ping") {
         Close();
         std::cout << "\033[1;31m心跳检测错误\033[0m" << std::endl;
@@ -1565,7 +1569,7 @@ bool Connection::checkHeart(const std::string& heart)
     if ((now_time - heart_time) > TIME_OUT)
     {
         Close();
-        std::cout << "\033[1;31m心跳检测超时！关闭连接！\033[0m" << std::endl;
+        std::cout << "\033[1;31m心跳检测超时！关闭连接！" << now_time << "  " << heart_time << "\033[0m" << std::endl;
         return false;
     }
     else

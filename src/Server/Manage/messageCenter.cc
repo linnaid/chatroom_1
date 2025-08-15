@@ -10,7 +10,7 @@ void MessageCenter::register_worker(int id, std::shared_ptr<Worker> worker) {
     workers[id] = worker;
 }
 
-// 这里是对好友间聊天的处理，我还没写～
+// 这里是对好友间聊天的处理～
 void MessageCenter::dispatch(int from_fd, int to_fd, const std::string& msg){
     auto it = workers.find(Worker_fd[to_fd]);
     if(it != workers.end()){

@@ -83,7 +83,3 @@ bool MailSender::sendMail(const std::string& from,
     return true;
 }
 
-
-
-
-// senfile

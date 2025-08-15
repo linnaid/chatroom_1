@@ -1,6 +1,7 @@
 #include "Heart.h"
 
 std::atomic<bool> running{true};
+std::condition_variable _notify;
 
 Heart::Heart()
 : _ip(IP),
@@ -39,12 +40,16 @@ void Heart::send_heart() {
     std::string msg;
     chat_heart.SerializeToString(&msg);
     msg = Protocol::pack(msg);
+
+    std::unique_lock<std::mutex> lock(_mtx);
     while(running) {
-        std::cout << "正在跳动" << std::endl;
+        // std::cout << "正在跳动" << std::endl;
         ssize_t a = send(_sockfd, msg.c_str(), msg.size(), 0);
         if(a < 0) {
             std::cerr << "Send Error in User_chat:" << std::strerror(errno) << std::endl;           
         }
-        std::this_thread::sleep_for(30s);
+        if (_notify.wait_for(lock, 30s, [] { return !running.load(); })) {
+            break; 
+        }
     }
 }

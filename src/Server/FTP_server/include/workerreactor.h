@@ -26,7 +26,7 @@ private:
     std::thread _thread;
     std::mutex cli_mutex;
     std::map<int,std::shared_ptr<FTPconnect>> connections;
-    threadsafequeue<int> _queue;
+    // threadsafequeue<int> _queue;
     int epoll_worker;
     int _time;
     bool _running;

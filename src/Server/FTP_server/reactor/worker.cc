@@ -47,7 +47,7 @@ void worker::make_queue(int *cli)
     if(epoll_ctl(epoll_worker, EPOLL_CTL_ADD, *cli, &event) < 0)
     perror("CLI_epoll_add error");
     cli_fd.push_back(*cli);
-    _queue.Push(*cli);
+    // _queue.Push(*cli);
 
     connections[*cli] = std::make_shared<FTPconnect>(*cli);
     // std::cout << "queue" << std::endl;

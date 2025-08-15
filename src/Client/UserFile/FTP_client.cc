@@ -145,7 +145,7 @@ std::ofstream FTPClient::File_creat(char* file_path)
     std::filesystem::path fdpath(file_path);
     // 获取目录
     std::string time = Protocol::GetNowTime();
-    std::string chage_file = time + "_" + _file_name;
+    std::string chage_file = time + "_" + _to_name + "_" + _file_name;
     std::string path_ = get_directory_path();
     std::filesystem::path f_path = std::filesystem::path(path_) / chage_file;
     std::ofstream open_file(f_path, std::ios::binary);
