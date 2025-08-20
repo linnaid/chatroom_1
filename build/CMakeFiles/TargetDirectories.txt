@@ -1,4 +1,0 @@
-/home/linnaid/ChatRoom/chatroom_1/build/CMakeFiles/client.dir
-/home/linnaid/ChatRoom/chatroom_1/build/CMakeFiles/server.dir
-/home/linnaid/ChatRoom/chatroom_1/build/CMakeFiles/edit_cache.dir
-/home/linnaid/ChatRoom/chatroom_1/build/CMakeFiles/rebuild_cache.dir
